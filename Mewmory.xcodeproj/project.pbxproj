@@ -1,0 +1,717 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4E1DC4B72DABDAAB003C561A /* MewmoryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4B62DABDAAB003C561A /* MewmoryApp.swift */; };
+		4E1DC4BB2DABDAAC003C561A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E1DC4BA2DABDAAC003C561A /* Assets.xcassets */; };
+		4E1DC4BE2DABDAAC003C561A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E1DC4BD2DABDAAC003C561A /* Preview Assets.xcassets */; };
+		4E1DC4C92DABDAAD003C561A /* MewmoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4C82DABDAAD003C561A /* MewmoryTests.swift */; };
+		4E1DC4D32DABDAAD003C561A /* MewmoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4D22DABDAAD003C561A /* MewmoryUITests.swift */; };
+		4E1DC4D52DABDAAD003C561A /* MewmoryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4D42DABDAAD003C561A /* MewmoryUITestsLaunchTests.swift */; };
+		4E1DC4E22DABDAFC003C561A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E1DC4E12DABDAFC003C561A /* Info.plist */; };
+		4E1DC4E42DABDD8D003C561A /* CPUProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4E32DABDD8D003C561A /* CPUProvider.swift */; };
+		4E1DC4EA2DAC192C003C561A /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4E92DAC192C003C561A /* System.swift */; };
+		4E1DC4EC2DAC197F003C561A /* Battery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4EB2DAC197F003C561A /* Battery.swift */; };
+		4E1DC4EE2DAC1992003C561A /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4ED2DAC1992003C561A /* Process.swift */; };
+		4E1DC4F12DAC314C003C561A /* CPUViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4F02DAC314C003C561A /* CPUViewModel.swift */; };
+		4E1DC4F42DAD6AD3003C561A /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4F32DAD6AD3003C561A /* NotchShape.swift */; };
+		4E1DC4F82DAD6C18003C561A /* NotchOutline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4F72DAD6C18003C561A /* NotchOutline.swift */; };
+		4E1DC4FB2DAD6CB7003C561A /* HelloAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4FA2DAD6CB7003C561A /* HelloAnimation.swift */; };
+		4E1DC4FE2DAD6D74003C561A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4FD2DAD6D74003C561A /* Logger.swift */; };
+		4E1DC5012DAD713F003C561A /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 4E1DC5002DAD713F003C561A /* Defaults */; };
+		4E2EE2D02DAEAD350057804D /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2CF2DAEAD350057804D /* KeyboardView.swift */; };
+		4E2EE2D22DAEAD870057804D /* KeyboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2D12DAEAD870057804D /* KeyboardViewModel.swift */; };
+		4E2EE2D42DAEC7140057804D /* PermissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2D32DAEC7140057804D /* PermissionViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4E1DC4C52DABDAAD003C561A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E1DC4AB2DABDAAB003C561A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E1DC4B22DABDAAB003C561A;
+			remoteInfo = Mewmory;
+		};
+		4E1DC4CF2DABDAAD003C561A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E1DC4AB2DABDAAB003C561A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E1DC4B22DABDAAB003C561A;
+			remoteInfo = Mewmory;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4E1DC4B32DABDAAB003C561A /* Mewmory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mewmory.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E1DC4B62DABDAAB003C561A /* MewmoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MewmoryApp.swift; sourceTree = "<group>"; };
+		4E1DC4BA2DABDAAC003C561A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4E1DC4BD2DABDAAC003C561A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4E1DC4BF2DABDAAC003C561A /* Mewmory.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mewmory.entitlements; sourceTree = "<group>"; };
+		4E1DC4C42DABDAAD003C561A /* MewmoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MewmoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E1DC4C82DABDAAD003C561A /* MewmoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MewmoryTests.swift; sourceTree = "<group>"; };
+		4E1DC4CE2DABDAAD003C561A /* MewmoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MewmoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E1DC4D22DABDAAD003C561A /* MewmoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MewmoryUITests.swift; sourceTree = "<group>"; };
+		4E1DC4D42DABDAAD003C561A /* MewmoryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MewmoryUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4E1DC4E12DABDAFC003C561A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E1DC4E32DABDD8D003C561A /* CPUProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUProvider.swift; sourceTree = "<group>"; };
+		4E1DC4E92DAC192C003C561A /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
+		4E1DC4EB2DAC197F003C561A /* Battery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Battery.swift; sourceTree = "<group>"; };
+		4E1DC4ED2DAC1992003C561A /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
+		4E1DC4F02DAC314C003C561A /* CPUViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUViewModel.swift; sourceTree = "<group>"; };
+		4E1DC4F32DAD6AD3003C561A /* NotchShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchShape.swift; sourceTree = "<group>"; };
+		4E1DC4F72DAD6C18003C561A /* NotchOutline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchOutline.swift; sourceTree = "<group>"; };
+		4E1DC4FA2DAD6CB7003C561A /* HelloAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloAnimation.swift; sourceTree = "<group>"; };
+		4E1DC4FD2DAD6D74003C561A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		4E2EE2CF2DAEAD350057804D /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		4E2EE2D12DAEAD870057804D /* KeyboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewModel.swift; sourceTree = "<group>"; };
+		4E2EE2D32DAEC7140057804D /* PermissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4E1DC4B02DABDAAB003C561A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E1DC5012DAD713F003C561A /* Defaults in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E1DC4C12DABDAAD003C561A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E1DC4CB2DABDAAD003C561A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4E1DC4AA2DABDAAB003C561A = {
+			isa = PBXGroup;
+			children = (
+				4E1DC4E12DABDAFC003C561A /* Info.plist */,
+				4E1DC4C72DABDAAD003C561A /* MewmoryTests */,
+				4E1DC4B52DABDAAB003C561A /* Mewmory */,
+				4E1DC4D12DABDAAD003C561A /* MewmoryUITests */,
+				4E1DC4B42DABDAAB003C561A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4E1DC4B42DABDAAB003C561A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DC4B32DABDAAB003C561A /* Mewmory.app */,
+				4E1DC4C42DABDAAD003C561A /* MewmoryTests.xctest */,
+				4E1DC4CE2DABDAAD003C561A /* MewmoryUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4E1DC4B52DABDAAB003C561A /* Mewmory */ = {
+			isa = PBXGroup;
+			children = (
+				4E2EE2CD2DAEAB210057804D /* Component */,
+				4E1DC4FC2DAD6D68003C561A /* Common */,
+				4E1DC4F92DAD6CAB003C561A /* Animation */,
+				4E1DC4F22DAD6AC2003C561A /* View */,
+				4E1DC4EF2DAC3138003C561A /* ViewModel */,
+				4E1DC4E82DAC191B003C561A /* SystemKit */,
+				4E1DC4E72DAC0CC6003C561A /* Provider */,
+				4E1DC4B62DABDAAB003C561A /* MewmoryApp.swift */,
+				4E1DC4BA2DABDAAC003C561A /* Assets.xcassets */,
+				4E1DC4BF2DABDAAC003C561A /* Mewmory.entitlements */,
+				4E1DC4BC2DABDAAC003C561A /* Preview Content */,
+			);
+			path = Mewmory;
+			sourceTree = "<group>";
+		};
+		4E1DC4BC2DABDAAC003C561A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DC4BD2DABDAAC003C561A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4E1DC4C72DABDAAD003C561A /* MewmoryTests */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DC4C82DABDAAD003C561A /* MewmoryTests.swift */,
+			);
+			path = MewmoryTests;
+			sourceTree = "<group>";
+		};
+		4E1DC4D12DABDAAD003C561A /* MewmoryUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DC4D22DABDAAD003C561A /* MewmoryUITests.swift */,
+				4E1DC4D42DABDAAD003C561A /* MewmoryUITestsLaunchTests.swift */,
+			);
+			path = MewmoryUITests;
+			sourceTree = "<group>";
+		};
+		4E1DC4E72DAC0CC6003C561A /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DC4E32DABDD8D003C561A /* CPUProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		4E1DC4E82DAC191B003C561A /* SystemKit */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DC4E92DAC192C003C561A /* System.swift */,
+				4E1DC4EB2DAC197F003C561A /* Battery.swift */,
+				4E1DC4ED2DAC1992003C561A /* Process.swift */,
+			);
+			path = SystemKit;
+			sourceTree = "<group>";
+		};
+		4E1DC4EF2DAC3138003C561A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4E2EE2D32DAEC7140057804D /* PermissionViewModel.swift */,
+				4E1DC4F02DAC314C003C561A /* CPUViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4E1DC4F22DAD6AC2003C561A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DC4F32DAD6AD3003C561A /* NotchShape.swift */,
+				4E1DC4F72DAD6C18003C561A /* NotchOutline.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E1DC4F92DAD6CAB003C561A /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DC4FA2DAD6CB7003C561A /* HelloAnimation.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		4E1DC4FC2DAD6D68003C561A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DC4FD2DAD6D74003C561A /* Logger.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4E2EE2CD2DAEAB210057804D /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				4E2EE2CE2DAEAD0F0057804D /* KeyViewer */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		4E2EE2CE2DAEAD0F0057804D /* KeyViewer */ = {
+			isa = PBXGroup;
+			children = (
+				4E2EE2D12DAEAD870057804D /* KeyboardViewModel.swift */,
+				4E2EE2CF2DAEAD350057804D /* KeyboardView.swift */,
+			);
+			path = KeyViewer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4E1DC4B22DABDAAB003C561A /* Mewmory */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E1DC4D82DABDAAD003C561A /* Build configuration list for PBXNativeTarget "Mewmory" */;
+			buildPhases = (
+				4E1DC4AF2DABDAAB003C561A /* Sources */,
+				4E1DC4B02DABDAAB003C561A /* Frameworks */,
+				4E1DC4B12DABDAAB003C561A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mewmory;
+			packageProductDependencies = (
+				4E1DC5002DAD713F003C561A /* Defaults */,
+			);
+			productName = Mewmory;
+			productReference = 4E1DC4B32DABDAAB003C561A /* Mewmory.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4E1DC4C32DABDAAD003C561A /* MewmoryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E1DC4DB2DABDAAD003C561A /* Build configuration list for PBXNativeTarget "MewmoryTests" */;
+			buildPhases = (
+				4E1DC4C02DABDAAD003C561A /* Sources */,
+				4E1DC4C12DABDAAD003C561A /* Frameworks */,
+				4E1DC4C22DABDAAD003C561A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E1DC4C62DABDAAD003C561A /* PBXTargetDependency */,
+			);
+			name = MewmoryTests;
+			productName = MewmoryTests;
+			productReference = 4E1DC4C42DABDAAD003C561A /* MewmoryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4E1DC4CD2DABDAAD003C561A /* MewmoryUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E1DC4DE2DABDAAD003C561A /* Build configuration list for PBXNativeTarget "MewmoryUITests" */;
+			buildPhases = (
+				4E1DC4CA2DABDAAD003C561A /* Sources */,
+				4E1DC4CB2DABDAAD003C561A /* Frameworks */,
+				4E1DC4CC2DABDAAD003C561A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E1DC4D02DABDAAD003C561A /* PBXTargetDependency */,
+			);
+			name = MewmoryUITests;
+			productName = MewmoryUITests;
+			productReference = 4E1DC4CE2DABDAAD003C561A /* MewmoryUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4E1DC4AB2DABDAAB003C561A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1510;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					4E1DC4B22DABDAAB003C561A = {
+						CreatedOnToolsVersion = 15.1;
+					};
+					4E1DC4C32DABDAAD003C561A = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 4E1DC4B22DABDAAB003C561A;
+					};
+					4E1DC4CD2DABDAAD003C561A = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 4E1DC4B22DABDAAB003C561A;
+					};
+				};
+			};
+			buildConfigurationList = 4E1DC4AE2DABDAAB003C561A /* Build configuration list for PBXProject "Mewmory" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4E1DC4AA2DABDAAB003C561A;
+			packageReferences = (
+				4E1DC4FF2DAD713F003C561A /* XCRemoteSwiftPackageReference "Defaults" */,
+			);
+			productRefGroup = 4E1DC4B42DABDAAB003C561A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4E1DC4B22DABDAAB003C561A /* Mewmory */,
+				4E1DC4C32DABDAAD003C561A /* MewmoryTests */,
+				4E1DC4CD2DABDAAD003C561A /* MewmoryUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4E1DC4B12DABDAAB003C561A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E1DC4BE2DABDAAC003C561A /* Preview Assets.xcassets in Resources */,
+				4E1DC4BB2DABDAAC003C561A /* Assets.xcassets in Resources */,
+				4E1DC4E22DABDAFC003C561A /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E1DC4C22DABDAAD003C561A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E1DC4CC2DABDAAD003C561A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4E1DC4AF2DABDAAB003C561A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E1DC4E42DABDD8D003C561A /* CPUProvider.swift in Sources */,
+				4E1DC4FE2DAD6D74003C561A /* Logger.swift in Sources */,
+				4E1DC4F12DAC314C003C561A /* CPUViewModel.swift in Sources */,
+				4E2EE2D02DAEAD350057804D /* KeyboardView.swift in Sources */,
+				4E1DC4EE2DAC1992003C561A /* Process.swift in Sources */,
+				4E1DC4F82DAD6C18003C561A /* NotchOutline.swift in Sources */,
+				4E1DC4EA2DAC192C003C561A /* System.swift in Sources */,
+				4E1DC4B72DABDAAB003C561A /* MewmoryApp.swift in Sources */,
+				4E2EE2D42DAEC7140057804D /* PermissionViewModel.swift in Sources */,
+				4E1DC4FB2DAD6CB7003C561A /* HelloAnimation.swift in Sources */,
+				4E1DC4F42DAD6AD3003C561A /* NotchShape.swift in Sources */,
+				4E1DC4EC2DAC197F003C561A /* Battery.swift in Sources */,
+				4E2EE2D22DAEAD870057804D /* KeyboardViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E1DC4C02DABDAAD003C561A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E1DC4C92DABDAAD003C561A /* MewmoryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E1DC4CA2DABDAAD003C561A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E1DC4D32DABDAAD003C561A /* MewmoryUITests.swift in Sources */,
+				4E1DC4D52DABDAAD003C561A /* MewmoryUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4E1DC4C62DABDAAD003C561A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E1DC4B22DABDAAB003C561A /* Mewmory */;
+			targetProxy = 4E1DC4C52DABDAAD003C561A /* PBXContainerItemProxy */;
+		};
+		4E1DC4D02DABDAAD003C561A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E1DC4B22DABDAAB003C561A /* Mewmory */;
+			targetProxy = 4E1DC4CF2DABDAAD003C561A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4E1DC4D62DABDAAD003C561A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4E1DC4D72DABDAAD003C561A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		4E1DC4D92DABDAAD003C561A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mewmory/Mewmory.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Mewmory/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.civitasv.Mewmory;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4E1DC4DA2DABDAAD003C561A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mewmory/Mewmory.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Mewmory/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.civitasv.Mewmory;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		4E1DC4DC2DABDAAD003C561A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.civitasv.MewmoryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mewmory.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Mewmory";
+			};
+			name = Debug;
+		};
+		4E1DC4DD2DABDAAD003C561A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.civitasv.MewmoryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mewmory.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Mewmory";
+			};
+			name = Release;
+		};
+		4E1DC4DF2DABDAAD003C561A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.civitasv.MewmoryUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Mewmory;
+			};
+			name = Debug;
+		};
+		4E1DC4E02DABDAAD003C561A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.civitasv.MewmoryUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Mewmory;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4E1DC4AE2DABDAAB003C561A /* Build configuration list for PBXProject "Mewmory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E1DC4D62DABDAAD003C561A /* Debug */,
+				4E1DC4D72DABDAAD003C561A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E1DC4D82DABDAAD003C561A /* Build configuration list for PBXNativeTarget "Mewmory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E1DC4D92DABDAAD003C561A /* Debug */,
+				4E1DC4DA2DABDAAD003C561A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E1DC4DB2DABDAAD003C561A /* Build configuration list for PBXNativeTarget "MewmoryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E1DC4DC2DABDAAD003C561A /* Debug */,
+				4E1DC4DD2DABDAAD003C561A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E1DC4DE2DABDAAD003C561A /* Build configuration list for PBXNativeTarget "MewmoryUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E1DC4DF2DABDAAD003C561A /* Debug */,
+				4E1DC4E02DABDAAD003C561A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4E1DC4FF2DAD713F003C561A /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4E1DC5002DAD713F003C561A /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E1DC4FF2DAD713F003C561A /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 4E1DC4AB2DABDAAB003C561A /* Project object */;
+}
