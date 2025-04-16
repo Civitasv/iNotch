@@ -19,23 +19,11 @@ struct MewmoryApp: App {
     @State private var permissionVm = PermissionsViewModel()
 
     var body: some Scene {
-        WindowGroup {
-            EmptyView()
-                .frame(width: 0, height: 0)
+        Window("iNotch", id: "iNotch") {
+            NotchView()
         }
         .windowStyle(.hiddenTitleBar)
-        .onChange(of: scenePhase) {
-            switch scenePhase {
-            case .background:
-                Logger.log("MewmoryApp ScenePhase Background", category: .ui)
-            case .active:
-                Logger.log("MewmoryApp ScenePhase Active", category: .ui)
-            case .inactive:
-                Logger.log("MewmoryApp ScenePhase InActive", category: .ui)
-            @unknown default:
-                Logger.log("MewmoryApp ScenePhase Unknown", category: .ui)
-            }
-        }
+        .windowResizability(.contentSize)
         
         MenuBarExtra("Mewmory", systemImage: "pawprint") {
             VStack {

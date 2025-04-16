@@ -27,6 +27,11 @@
 		4E2EE2D02DAEAD350057804D /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2CF2DAEAD350057804D /* KeyboardView.swift */; };
 		4E2EE2D22DAEAD870057804D /* KeyboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2D12DAEAD870057804D /* KeyboardViewModel.swift */; };
 		4E2EE2D42DAEC7140057804D /* PermissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2D32DAEC7140057804D /* PermissionViewModel.swift */; };
+		4E2EE2D72DAFC8010057804D /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2D62DAFC8010057804D /* NotchView.swift */; };
+		4E2EE2E02DAFD0570057804D /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2DF2DAFD0570057804D /* BatteryView.swift */; };
+		4E2EE2E22DAFD0A90057804D /* BatteryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2E12DAFD0A90057804D /* BatteryViewModel.swift */; };
+		4E2EE2E42DAFD4EC0057804D /* InlineHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2E32DAFD4EC0057804D /* InlineHud.swift */; };
+		4E2EE2E62DAFDBF10057804D /* NotchLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2E52DAFDBF10057804D /* NotchLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +75,11 @@
 		4E2EE2CF2DAEAD350057804D /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		4E2EE2D12DAEAD870057804D /* KeyboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewModel.swift; sourceTree = "<group>"; };
 		4E2EE2D32DAEC7140057804D /* PermissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewModel.swift; sourceTree = "<group>"; };
+		4E2EE2D62DAFC8010057804D /* NotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
+		4E2EE2DF2DAFD0570057804D /* BatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
+		4E2EE2E12DAFD0A90057804D /* BatteryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryViewModel.swift; sourceTree = "<group>"; };
+		4E2EE2E32DAFD4EC0057804D /* InlineHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineHud.swift; sourceTree = "<group>"; };
+		4E2EE2E52DAFDBF10057804D /* NotchLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +204,8 @@
 			children = (
 				4E1DC4F32DAD6AD3003C561A /* NotchShape.swift */,
 				4E1DC4F72DAD6C18003C561A /* NotchOutline.swift */,
+				4E2EE2E32DAFD4EC0057804D /* InlineHud.swift */,
+				4E2EE2E52DAFDBF10057804D /* NotchLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -217,18 +229,37 @@
 		4E2EE2CD2DAEAB210057804D /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				4E2EE2CE2DAEAD0F0057804D /* KeyViewer */,
+				4E2EE2DE2DAFD0400057804D /* Battery */,
+				4E2EE2D52DAFC7D20057804D /* NotchView */,
+				4E2EE2CE2DAEAD0F0057804D /* KeyboardView */,
 			);
 			path = Component;
 			sourceTree = "<group>";
 		};
-		4E2EE2CE2DAEAD0F0057804D /* KeyViewer */ = {
+		4E2EE2CE2DAEAD0F0057804D /* KeyboardView */ = {
 			isa = PBXGroup;
 			children = (
 				4E2EE2D12DAEAD870057804D /* KeyboardViewModel.swift */,
 				4E2EE2CF2DAEAD350057804D /* KeyboardView.swift */,
 			);
-			path = KeyViewer;
+			path = KeyboardView;
+			sourceTree = "<group>";
+		};
+		4E2EE2D52DAFC7D20057804D /* NotchView */ = {
+			isa = PBXGroup;
+			children = (
+				4E2EE2D62DAFC8010057804D /* NotchView.swift */,
+			);
+			path = NotchView;
+			sourceTree = "<group>";
+		};
+		4E2EE2DE2DAFD0400057804D /* Battery */ = {
+			isa = PBXGroup;
+			children = (
+				4E2EE2DF2DAFD0570057804D /* BatteryView.swift */,
+				4E2EE2E12DAFD0A90057804D /* BatteryViewModel.swift */,
+			);
+			path = Battery;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,19 +399,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E2EE2E62DAFDBF10057804D /* NotchLayout.swift in Sources */,
 				4E1DC4E42DABDD8D003C561A /* CPUProvider.swift in Sources */,
 				4E1DC4FE2DAD6D74003C561A /* Logger.swift in Sources */,
+				4E2EE2E02DAFD0570057804D /* BatteryView.swift in Sources */,
 				4E1DC4F12DAC314C003C561A /* CPUViewModel.swift in Sources */,
 				4E2EE2D02DAEAD350057804D /* KeyboardView.swift in Sources */,
 				4E1DC4EE2DAC1992003C561A /* Process.swift in Sources */,
 				4E1DC4F82DAD6C18003C561A /* NotchOutline.swift in Sources */,
 				4E1DC4EA2DAC192C003C561A /* System.swift in Sources */,
+				4E2EE2E22DAFD0A90057804D /* BatteryViewModel.swift in Sources */,
 				4E1DC4B72DABDAAB003C561A /* MewmoryApp.swift in Sources */,
 				4E2EE2D42DAEC7140057804D /* PermissionViewModel.swift in Sources */,
 				4E1DC4FB2DAD6CB7003C561A /* HelloAnimation.swift in Sources */,
 				4E1DC4F42DAD6AD3003C561A /* NotchShape.swift in Sources */,
+				4E2EE2D72DAFC8010057804D /* NotchView.swift in Sources */,
 				4E1DC4EC2DAC197F003C561A /* Battery.swift in Sources */,
 				4E2EE2D22DAEAD870057804D /* KeyboardViewModel.swift in Sources */,
+				4E2EE2E42DAFD4EC0057804D /* InlineHud.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,10 +577,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Mewmory/Mewmory.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mewmory/Preview Content\"";
+				DEVELOPMENT_TEAM = 6V6NQS266Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -566,10 +604,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Mewmory/Mewmory.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mewmory/Preview Content\"";
+				DEVELOPMENT_TEAM = 6V6NQS266Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
