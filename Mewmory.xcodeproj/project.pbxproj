@@ -32,6 +32,9 @@
 		4E2EE2E22DAFD0A90057804D /* BatteryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2E12DAFD0A90057804D /* BatteryViewModel.swift */; };
 		4E2EE2E42DAFD4EC0057804D /* InlineHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2E32DAFD4EC0057804D /* InlineHud.swift */; };
 		4E2EE2E62DAFDBF10057804D /* NotchLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2E52DAFDBF10057804D /* NotchLayout.swift */; };
+		4E2EE2E82DB155650057804D /* NotchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2E72DB155650057804D /* NotchViewModel.swift */; };
+		4E2EE2EA2DB156970057804D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2E92DB156970057804D /* Constant.swift */; };
+		4E2EE2EC2DB158500057804D /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2EB2DB158500057804D /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +83,9 @@
 		4E2EE2E12DAFD0A90057804D /* BatteryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryViewModel.swift; sourceTree = "<group>"; };
 		4E2EE2E32DAFD4EC0057804D /* InlineHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineHud.swift; sourceTree = "<group>"; };
 		4E2EE2E52DAFDBF10057804D /* NotchLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchLayout.swift; sourceTree = "<group>"; };
+		4E2EE2E72DB155650057804D /* NotchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewModel.swift; sourceTree = "<group>"; };
+		4E2EE2E92DB156970057804D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		4E2EE2EB2DB158500057804D /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				4E1DC4E32DABDD8D003C561A /* CPUProvider.swift */,
+				4E2EE2EB2DB158500057804D /* Helper.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -222,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				4E1DC4FD2DAD6D74003C561A /* Logger.swift */,
+				4E2EE2E92DB156970057804D /* Constant.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -249,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				4E2EE2D62DAFC8010057804D /* NotchView.swift */,
+				4E2EE2E72DB155650057804D /* NotchViewModel.swift */,
 			);
 			path = NotchView;
 			sourceTree = "<group>";
@@ -406,10 +415,13 @@
 				4E1DC4F12DAC314C003C561A /* CPUViewModel.swift in Sources */,
 				4E2EE2D02DAEAD350057804D /* KeyboardView.swift in Sources */,
 				4E1DC4EE2DAC1992003C561A /* Process.swift in Sources */,
+				4E2EE2EA2DB156970057804D /* Constant.swift in Sources */,
+				4E2EE2EC2DB158500057804D /* Helper.swift in Sources */,
 				4E1DC4F82DAD6C18003C561A /* NotchOutline.swift in Sources */,
 				4E1DC4EA2DAC192C003C561A /* System.swift in Sources */,
 				4E2EE2E22DAFD0A90057804D /* BatteryViewModel.swift in Sources */,
 				4E1DC4B72DABDAAB003C561A /* MewmoryApp.swift in Sources */,
+				4E2EE2E82DB155650057804D /* NotchViewModel.swift in Sources */,
 				4E2EE2D42DAEC7140057804D /* PermissionViewModel.swift in Sources */,
 				4E1DC4FB2DAD6CB7003C561A /* HelloAnimation.swift in Sources */,
 				4E1DC4F42DAD6AD3003C561A /* NotchShape.swift in Sources */,

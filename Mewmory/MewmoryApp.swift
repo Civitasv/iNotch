@@ -17,13 +17,15 @@ struct MewmoryApp: App {
     @State private var keyboardVm = KeyboardViewModel()
     @State private var cpuVm = CPUViewModel()
     @State private var permissionVm = PermissionsViewModel()
+    @State private var notchVm = NotchViewModel()
 
     var body: some Scene {
         Window("iNotch", id: "iNotch") {
             NotchView()
+                .environment(notchVm)
         }
         .windowStyle(.hiddenTitleBar)
-        .windowResizability(.contentSize)
+//        .windowResizability(.contentSize)
         
         MenuBarExtra("Mewmory", systemImage: "pawprint") {
             VStack {

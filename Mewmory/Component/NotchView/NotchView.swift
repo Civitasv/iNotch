@@ -133,6 +133,7 @@ fileprivate struct NotchPanelModifier<PanelContent: View>: ViewModifier {
  
     /// Present the panel and make it the key window
     func present() {
+        panel?.alphaValue = 0
         panel?.orderFrontRegardless()
         panel?.makeKey()
         /// change Panel location
@@ -149,6 +150,7 @@ fileprivate struct NotchPanelModifier<PanelContent: View>: ViewModifier {
                 y: scree_origin_y + screen_height - panel_height
             )
             panel?.setFrameOrigin(origin)
+            panel?.alphaValue = 1
             Logger.log("\(panel_width) . \(panel_height) . \(screen_width) . \(screen_height) . \(scree_origin_x) . \(scree_origin_y)", category: .debug)
         }
         else {
@@ -171,21 +173,51 @@ extension View {
 }
 
 struct NotchView: View {
-    @State private var notchHeight: CGFloat = 0
+    // 整个空间的最大大小，即浮动之后的大小
+    @State private var notchPanelRect: CGRect = CGRect(x: 0, y: 0, width: 610, height: 200)
+
     @State var bPresented = true
+    @Environment(NotchViewModel.self) var notchVm
 
     var body: some View {
-        EmptyView()
-        .notchPanel(bPresented: $bPresented, content: {
-            ZStack {
-                Rectangle()
-                    .fill(.black)
-                Text("I'm a floating panel. Click anywhere to dismiss me.")
+        Button("Hover") {
+            withAnimation() {
+                if notchVm.notchSize.width != notchPanelRect.width {
+                    notchVm.notchSize.width = notchPanelRect.width
+                    notchVm.notchSize.height = notchPanelRect.height
+                } else {
+                    notchVm.notchSize = getClosedNotchSize()
+                }
             }
+        }
+        .notchPanel(bPresented: $bPresented, contentRect: notchPanelRect, content: {
+            ContentView(notchPanelRect: notchPanelRect)
+                .environment(notchVm)
         })
     }
 }
 
+// The View Inside Notch
+struct ContentView: View {
+    var notchPanelRect: CGRect?
+    @Environment(NotchViewModel.self) var notchVm
+    
+    var body: some View {
+        ZStack(alignment: .top) {
+            Rectangle()
+                .fill(.green)
+                .frame(width: notchVm.notchSize.width, height: notchVm.notchSize.height, alignment: .top)
+            Text("I'm a floating panel. Click anywhere to dismiss me.")
+        }
+        .frame(maxWidth: notchPanelRect?.width, maxHeight: notchPanelRect?.height, alignment: .top)
+    }
+    
+    init(notchPanelRect: CGRect) {
+        self.notchPanelRect = notchPanelRect
+    }
+}
+
 #Preview {
-    NotchView()
+    ContentView(notchPanelRect: CGRect(x: 0, y: 0, width: 610, height: 200))
+        .environment(NotchViewModel())
 }
