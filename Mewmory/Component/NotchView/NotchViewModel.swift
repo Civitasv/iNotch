@@ -11,9 +11,21 @@ import SwiftUI
 
 @Observable
 final class NotchViewModel {
-    var notchSize: CGSize
+    var notchViewSize: CGSize // the view size of notch bar
+    var bHovering: Bool
 
     init() {
-        notchSize = getClosedNotchSize()
+        notchViewSize = getClosedNotchSize()
+        bHovering = false
+    }
+    
+    func isHoveringOnNotch() -> Bool {
+        let position: NSPoint = NSEvent.mouseLocation
+        if let screen = NSScreen.main {
+            let baseX = screen.frame.midX - notchViewSize.width / 2
+            let baseY = screen.frame.maxY - notchViewSize.height
+            return position.y >= baseY && position.x >= baseX && position.x <= baseX + notchViewSize.width
+        }
+        return false
     }
 }

@@ -180,16 +180,7 @@ struct NotchView: View {
     @Environment(NotchViewModel.self) var notchVm
 
     var body: some View {
-        Button("Hover") {
-            withAnimation() {
-                if notchVm.notchSize.width != notchPanelRect.width {
-                    notchVm.notchSize.width = notchPanelRect.width
-                    notchVm.notchSize.height = notchPanelRect.height
-                } else {
-                    notchVm.notchSize = getClosedNotchSize()
-                }
-            }
-        }
+        EmptyView()
         .notchPanel(bPresented: $bPresented, contentRect: notchPanelRect, content: {
             ContentView(notchPanelRect: notchPanelRect)
                 .environment(notchVm)
@@ -199,17 +190,37 @@ struct NotchView: View {
 
 // The View Inside Notch
 struct ContentView: View {
-    var notchPanelRect: CGRect?
+    var notchPanelRect: CGRect
     @Environment(NotchViewModel.self) var notchVm
+    private var notchSize = getClosedNotchSize()
     
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
-                .fill(.green)
-                .frame(width: notchVm.notchSize.width, height: notchVm.notchSize.height, alignment: .top)
-            Text("I'm a floating panel. Click anywhere to dismiss me.")
+                .fill(.black)
+                .shadow(color: notchVm.bHovering ? .black.opacity(0.6): .clear, radius: 5)
+                .cornerRadius(radius: 10, corners: [.bottomLeft, .bottomRight])
+                .frame(width: notchVm.notchViewSize.width, height: notchVm.notchViewSize.height, alignment: .top)
+                .onHover(perform: { hovering in
+                    let bHovering = hovering
+                    Logger.log("Hovering Start: \(bHovering)", category: .ui)
+                    withAnimation(.spring(duration: 1.0, bounce: 0)) {
+                        if bHovering {
+                            notchVm.notchViewSize = CGSize(width: notchPanelRect.width, height: notchPanelRect.height)
+                        } else {
+                            notchVm.notchViewSize = notchSize
+                        }
+                        notchVm.bHovering = bHovering
+                    }
+                    Logger.log("Hovering End: \(notchVm.bHovering)", category: .ui)
+                })
+            HStack {
+                BatteryView()
+                    .padding(5)
+            }
+            .frame(width: notchVm.notchViewSize.width, height: notchSize.height, alignment: .trailing) // 高度不变，宽度随实际宽度改变而改变
         }
-        .frame(maxWidth: notchPanelRect?.width, maxHeight: notchPanelRect?.height, alignment: .top)
+        .frame(maxWidth: notchPanelRect.width, maxHeight: notchPanelRect.height, alignment: .top) // 与最大宽度和高度一致
     }
     
     init(notchPanelRect: CGRect) {
@@ -219,5 +230,6 @@ struct ContentView: View {
 
 #Preview {
     ContentView(notchPanelRect: CGRect(x: 0, y: 0, width: 610, height: 200))
+        .frame(width: 800, height: 300, alignment: .top)
         .environment(NotchViewModel())
 }

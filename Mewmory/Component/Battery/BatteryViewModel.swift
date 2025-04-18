@@ -6,15 +6,28 @@
 //
 
 import Foundation
+import IOKit.ps
+import SwiftUI
 
 @Observable
 final class BatteryViewModel {
     var percentage: Int = 0
     var bCharging: Bool = false
-    
+    private var powerSourceChangedCallback: IOPowerSourceCallbackType?
+    private var runLoopSource: Unmanaged<CFRunLoopSource>?
+
     init(percentage: Int, bCharging: Bool) {
         self.percentage = percentage
         self.bCharging = bCharging
+        self.updateBatteryStatus()
+        self.startMonitoring()
+    }
+    
+    deinit {
+        if let runLoopSource = runLoopSource {
+            CFRunLoopRemoveSource(CFRunLoopGetCurrent(), runLoopSource.takeUnretainedValue(), .defaultMode)
+            runLoopSource.release()
+        }
     }
 
     public func isLowPowerMode() -> Bool {
@@ -23,5 +36,48 @@ final class BatteryViewModel {
     
     public func isDangerousPowerMode() -> Bool {
         return percentage <= 20
+    }
+    
+    private func updateBatteryStatus() {
+        if let snapshot = IOPSCopyPowerSourcesInfo()?.takeRetainedValue(),
+           let sources = IOPSCopyPowerSourcesList(snapshot)?.takeRetainedValue() as? [CFTypeRef] {
+            for source in sources {
+                if let info = IOPSGetPowerSourceDescription(snapshot, source)?.takeUnretainedValue() as? [String: AnyObject],
+                   let currentCapacity = info[kIOPSCurrentCapacityKey] as? Int,
+                   let maxCapacity = info[kIOPSMaxCapacityKey] as? Int,
+                   let bCharging = info["Is Charging"] as? Bool,
+                   let powerSource = info[kIOPSPowerSourceStateKey] as? String {
+                    withAnimation {
+                        self.percentage = Int((currentCapacity * 100) / maxCapacity)
+                    }
+
+                    let isACPower = powerSource == "AC Power"
+
+                    Logger.log("isACPower: \(isACPower)", category: .ui)
+                    withAnimation {
+                        self.bCharging = bCharging || isACPower
+                    }
+                }
+               
+            }
+        }
+    }
+    
+    private func startMonitoring() {
+        let context = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
+
+        powerSourceChangedCallback = { context in
+            if let context = context {
+                let mySelf = Unmanaged<BatteryViewModel>.fromOpaque(context).takeUnretainedValue()
+                DispatchQueue.main.async {
+                    mySelf.updateBatteryStatus()
+                }
+            }
+        }
+
+        if let runLoopSource = IOPSNotificationCreateRunLoopSource(powerSourceChangedCallback!, context)?.takeRetainedValue() {
+            self.runLoopSource = Unmanaged<CFRunLoopSource>.passRetained(runLoopSource)
+            CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, .defaultMode)
+        }
     }
 }

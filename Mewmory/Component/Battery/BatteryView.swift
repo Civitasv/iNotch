@@ -62,9 +62,6 @@ struct BatteryView: View {
     
     var body: some View {
         HStack {
-            Text("\(batteryVm.percentage)%")
-                .font(.callout)
-                .foregroundStyle(.white)
             BatteryIcon(batteryVm: batteryVm, batteryWidth: 30)
         }
     }
