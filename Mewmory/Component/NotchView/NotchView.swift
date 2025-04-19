@@ -172,41 +172,45 @@ extension View {
     }
 }
 
+// The Root View
 struct NotchView: View {
     // 整个空间的最大大小，即浮动之后的大小
     @State private var notchPanelRect: CGRect = CGRect(x: 0, y: 0, width: 610, height: 200)
 
     @State var bPresented = true
-    @Environment(NotchViewModel.self) var notchVm
+    
 
     var body: some View {
         EmptyView()
         .notchPanel(bPresented: $bPresented, contentRect: notchPanelRect, content: {
             ContentView(notchPanelRect: notchPanelRect)
-                .environment(notchVm)
         })
     }
 }
 
 // The View Inside Notch
 struct ContentView: View {
+    @State private var keyboardVm = KeyboardViewModel()
+    @State private var cpuVm = CPUViewModel()
+    @State private var permissionVm = PermissionsViewModel()
+    @State private var notchVm = NotchViewModel()
+    @State private var musicVm = MusicViewModel()
+
     var notchPanelRect: CGRect
-    @Environment(NotchViewModel.self) var notchVm
     private var notchSize = getClosedNotchSize()
     
     var body: some View {
         ZStack(alignment: .top) {
-            Rectangle()
-                .fill(.black)
-                .shadow(color: notchVm.bHovering ? .black.opacity(0.6): .clear, radius: 5)
-                .cornerRadius(radius: 10, corners: [.bottomLeft, .bottomRight])
+            NotchShape()
+                .fill(.white)
+                .shadow(color: notchVm.bHovering ? .black.opacity(0.6): .clear, radius: 2)
                 .frame(width: notchVm.notchViewSize.width, height: notchVm.notchViewSize.height, alignment: .top)
                 .onHover(perform: { hovering in
                     let bHovering = hovering
                     Logger.log("Hovering Start: \(bHovering)", category: .ui)
-                    withAnimation(.spring(duration: 1.0, bounce: 0)) {
+                    withAnimation(.spring(duration: 0.5, bounce: 0.2)) {
                         if bHovering {
-                            notchVm.notchViewSize = CGSize(width: notchPanelRect.width, height: notchPanelRect.height)
+                            notchVm.notchViewSize = CGSize(width: notchPanelRect.width-200, height: notchSize.height)
                         } else {
                             notchVm.notchViewSize = notchSize
                         }
@@ -214,7 +218,14 @@ struct ContentView: View {
                     }
                     Logger.log("Hovering End: \(notchVm.bHovering)", category: .ui)
                 })
+            
             HStack {
+                KeyboardView()
+                    .environment(keyboardVm)
+                    .environment(permissionVm)
+                MusicLessView()
+                    .environment(musicVm)
+                    .environment(notchVm)
                 BatteryView()
                     .padding(5)
             }
@@ -232,4 +243,5 @@ struct ContentView: View {
     ContentView(notchPanelRect: CGRect(x: 0, y: 0, width: 610, height: 200))
         .frame(width: 800, height: 300, alignment: .top)
         .environment(NotchViewModel())
+        .environment(MusicViewModel())
 }

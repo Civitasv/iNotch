@@ -23,11 +23,10 @@ final class PermissionsViewModel {
             }
         }
     }
-
-    static func acquireAccessibilityPrivileges() {
-        Logger.log("PermissionsGetter.acquireAccessibilityPrivileges", category: .debug)
-        let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true]
-        let enabled = AXIsProcessTrustedWithOptions(options)
-        Logger.log("\(enabled)", category: .debug)
+    
+    init() {
+//        self.acquireAccessibilityPrivileges()
     }
+
+    
 }

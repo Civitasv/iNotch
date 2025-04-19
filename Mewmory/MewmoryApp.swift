@@ -14,24 +14,17 @@ import Defaults
 struct MewmoryApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) private var scenePhase
-    @State private var keyboardVm = KeyboardViewModel()
-    @State private var cpuVm = CPUViewModel()
-    @State private var permissionVm = PermissionsViewModel()
-    @State private var notchVm = NotchViewModel()
 
     var body: some Scene {
         Window("iNotch", id: "iNotch") {
             NotchView()
-                .environment(notchVm)
         }
         .windowStyle(.hiddenTitleBar)
 //        .windowResizability(.contentSize)
         
         MenuBarExtra("Mewmory", systemImage: "pawprint") {
             VStack {
-                KeyboardView()
-                    .environment(keyboardVm)
-                    .environment(permissionVm)
+//                KeyboardView()
             }
             .padding()
         }
@@ -51,6 +44,5 @@ struct MewmoryApp: App {
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         Logger.log("Apply Accessibility Privileges", category: .ui)
-        PermissionsViewModel.acquireAccessibilityPrivileges()
     }
 }

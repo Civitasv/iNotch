@@ -11,6 +11,9 @@ import Foundation
 final class CPUViewModel {
     var cpuUsage: Double? = 0.0
 
+    init() {
+        Logger.log("init", category: .debug)
+    }
     public func tick() {
         // Refresh cpuUsage value
         cpuUsage = CPUProvider.getCPUUsage()
