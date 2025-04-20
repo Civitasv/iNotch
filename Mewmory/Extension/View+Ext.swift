@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Foundation
+import Combine
 
 struct RectCorner: OptionSet {
     let rawValue: Int
@@ -65,6 +66,55 @@ struct RoundedCornersShape: Shape {
 extension View {
     func cornerRadius(radius: CGFloat, corners: RectCorner) -> some View {
         clipShape(RoundedCornersShape(radius: radius, corners: corners))
+    }
+}
+
+struct ScrollWheelModifier: ViewModifier {
+    enum Direction {
+        case Up, Down, Left, Right
+    }
+
+    @State private var subs = Set<AnyCancellable>() // Cancel onDisappear
+
+    var action: (Direction) -> Void
+    
+    func body(content: Content) -> some View {
+        content
+            .onAppear { trackScrollWheel() }
+    }
+    
+    func trackScrollWheel() {
+        NSApp.publisher(for: \.currentEvent)
+            .filter { event in event?.type == .scrollWheel }
+            .throttle(for: .milliseconds(200),
+                      scheduler: DispatchQueue.main,
+                      latest: true)
+            .sink {
+                if let event = $0 {
+                    if event.deltaX > 4 {
+                        action(.Right)
+                    }
+                    
+                    if event.deltaX < -4 {
+                        action(.Left)
+                    }
+                    
+                    if event.deltaY > 4 {
+                        action(.Down)
+                    }
+                    
+                    if event.deltaY < -4 {
+                        action(.Up)
+                    }
+                }
+          }
+          .store(in: &subs)
+    }
+}
+
+extension View {
+    func onScrollWheelUp(action: @escaping (ScrollWheelModifier.Direction) -> Void) -> some View {
+        modifier(ScrollWheelModifier(action: action) )
     }
 }
 

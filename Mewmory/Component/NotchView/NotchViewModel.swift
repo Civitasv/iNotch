@@ -9,27 +9,15 @@ import Foundation
 import Defaults
 import SwiftUI
 
-let batteryRightComponent = NotchComponent(appType: .Battery) {
-    BatteryView()
+// 灵动岛显示模式，分为隐藏、较少显示、更多显示
+enum NotchDisplayMode: Int {
+    case Hide = 0
+    case Less = 1
+    case More = 2
 }
-let batteryApp: NotchApp = NotchApp(leftComponent: nil, rightComponent: batteryRightComponent)
-
-let musicLeftComponent = NotchComponent(appType: .Music) {
-    MusicLessLeftView()
-}
-let musicRightComponent = NotchComponent(appType: .Music) {
-    MusicLessRightView()
-}
-let musicApp: NotchApp = NotchApp(leftComponent: musicLeftComponent, rightComponent: musicRightComponent)
-
-let allApps: [NotchAppType: NotchApp] = [
-    .Battery : batteryApp,
-    .Music : musicApp
-] // all apps support by this application
 
 enum NotchAppType {
     case Music
-    case Battery
 }
 
 struct NotchApp: Identifiable, Equatable {
@@ -42,9 +30,25 @@ struct NotchApp: Identifiable, Equatable {
     }
 }
 
+enum NotchTipType {
+    case Battery
+}
+
+struct NotchTip: Identifiable, Equatable {
+    let id = UUID()
+    let leftComponent: NotchComponent?
+    let rightComponent: NotchComponent?
+    let duration: Double
+    
+    static func == (lhs: NotchTip, rhs: NotchTip) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
 struct NotchComponent: Identifiable, Equatable {
     let id = UUID()
-    let appType: NotchAppType // 所属应用的标识
+    let appType: NotchAppType? // 所属应用的标识
+    let tipType: NotchTipType? // 所属tips的标识
     let content: AnyView
 
     init<Content: View>(
@@ -52,6 +56,16 @@ struct NotchComponent: Identifiable, Equatable {
         @ViewBuilder content: () -> Content
    ) {
        self.appType = appType
+       self.tipType = nil
+       self.content = AnyView(content())
+   }
+    
+    init<Content: View>(
+        tipType: NotchTipType,
+        @ViewBuilder content: () -> Content
+   ) {
+       self.appType = nil
+       self.tipType = tipType
        self.content = AnyView(content())
    }
     
@@ -65,13 +79,39 @@ struct NotchSnapShot {
     var rightComponent: NotchComponent? = nil
 }
 
+let musicLeftComponent = NotchComponent(appType: .Music) {
+    MusicLessLeftView()
+}
+let musicRightComponent = NotchComponent(appType: .Music) {
+    MusicLessRightView()
+}
+let musicApp: NotchApp = NotchApp(leftComponent: musicLeftComponent, rightComponent: musicRightComponent)
+
+let allApps: [NotchAppType: NotchApp] = [
+    .Music : musicApp
+] // all apps support by this application
+
+
+let batteryRightComponent = NotchComponent(tipType: .Battery) {
+    BatteryView()
+}
+let batteryTip: NotchTip = NotchTip(leftComponent: nil, rightComponent: batteryRightComponent, duration: 2.0)
+
+let allTips: [NotchTipType: NotchTip] = [
+    .Battery : batteryTip,
+] // all tips support by this application
+
 @Observable
 final class NotchViewModel {
     var notchViewSize: CGSize = getClosedNotchSize() // the view size of notch bar
     var bHovering: Bool = false
+    var displayMode: NotchDisplayMode = .Hide
 
     var currentSnapShot: NotchSnapShot = NotchSnapShot()
-    private var historyRightComponentStack: [NotchComponent] = []
+
+    private var reachMore: Bool = false
+    private var notchSize: CGSize = getClosedNotchSize()
+    private var notchPanelRect: CGRect = CGRect(x: 0, y: 0, width: 610, height: 200)
 
     init() {
         registerEvents()
@@ -112,9 +152,20 @@ final class NotchViewModel {
                 addToLeftSlot(component: leftComponent)
             }
         }
-        
         if let rightComponent = app.rightComponent {
-            // app的右component存在的话，无论如何都要占用
+            // app 的右 component 存在的话，无论如何都要占用
+            addToRightSlot(component: rightComponent)
+        }
+    }
+    
+    func addTip(_ tip: NotchTip) {
+        if let leftComponent = tip.leftComponent {
+            // tip 的左 component 存在的话，无论如何都要占用
+            addToLeftSlot(component: leftComponent)
+        }
+        
+        if let rightComponent = tip.rightComponent {
+            // tip 的右 component 存在的话，无论如何都要占用
             addToRightSlot(component: rightComponent)
         }
     }
@@ -124,27 +175,14 @@ final class NotchViewModel {
     }
     
     private func addToRightSlot(component: NotchComponent) {
-        pushToRightComponentStack(component: currentSnapShot.rightComponent)
         currentSnapShot.rightComponent = component
     }
     
-    private func pushToRightComponentStack(component: NotchComponent?) {
-        guard let component else { return }
-        historyRightComponentStack.insert(component, at: 0)
-    }
-    
-    private func popFromRightComponentStack() -> NotchComponent? {
-        if historyRightComponentStack.count > 0 {
-            let component = historyRightComponentStack.remove(at: 0)
-            return component
-        }
-        return nil
-    }
-    
+    // 导航的只可能是 app，tip存在时不允许滑动
     func navigate(isForward: Bool) {
         if isForward {
             guard let leftComponent = currentSnapShot.leftComponent else { return }
-            let appType = leftComponent.appType
+            guard let appType = leftComponent.appType else { return }
             guard let app = allApps[appType] else { return }
             guard let rightComponent = app.rightComponent else { return }
             // 显示该 app 的右 component
@@ -156,13 +194,73 @@ final class NotchViewModel {
             guard let rightComponent = currentSnapShot.rightComponent else {
                 return
             }
-            let appType = rightComponent.appType
+            guard let appType = rightComponent.appType else { return }
             guard let app = allApps[appType] else { return }
             guard let leftComponent = app.leftComponent else { return }
             // 显示该 app 的左 component
             if leftComponent != currentSnapShot.leftComponent {
                 addToLeftSlot(component: leftComponent)
             }
+        }
+    }
+    
+    func refreshSize() {
+        switch displayMode {
+        case .Hide:
+            withAnimation(.spring(duration: 0.2, bounce: 0.1)) {
+                notchViewSize = CGSize(width: notchSize.width + (bHovering ? 5 : 0), height: notchSize.height + (bHovering ? 5 : 0))
+            }
+        case .Less:
+            withAnimation(.spring(duration: 0.4, bounce: 0.2)) {
+                notchViewSize = CGSize(width: notchSize.width + (bHovering ? 105 : 100), height: notchSize.height + (bHovering ? 5 : 0))
+            }
+        case .More:
+            withAnimation(.spring(duration: 0.5, bounce: 0.1)) {
+                notchViewSize = CGSize(width: notchPanelRect.width, height: notchPanelRect.height)
+            }
+        }
+    }
+    
+    func doubleTap() {
+        if reachMore {
+            shrinkOrExpand(direction: .Up)
+            if displayMode == .Hide {
+                reachMore = false
+            }
+        }
+        else {
+            shrinkOrExpand(direction: .Down)
+            if displayMode == .More {
+                reachMore = true
+            }
+        }
+    }
+    
+    func shrinkOrExpand(direction: ScrollWheelModifier.Direction) {
+        Logger.log("Direction: \(direction)", category: .debug)
+        if direction == .Right || direction == .Left {
+            return
+        }
+        var newDisplayMode: NotchDisplayMode = displayMode
+        if direction == .Up {
+            if newDisplayMode == .More {
+                newDisplayMode = .Less
+            }
+            else if newDisplayMode == .Less {
+                newDisplayMode = .Hide
+            }
+        }
+        else if direction == .Down {
+            if newDisplayMode == .Hide {
+                newDisplayMode = .Less
+            }
+            else if newDisplayMode == .Less {
+                newDisplayMode = .More
+            }
+        }
+        if displayMode != newDisplayMode {
+            displayMode = newDisplayMode
+            self.refreshSize()
         }
     }
 }

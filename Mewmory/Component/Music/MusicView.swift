@@ -238,5 +238,5 @@ private struct CoverImageView: View {
     MusicLessLeftView()
         .environment(MusicViewModel())
         .environment(NotchViewModel())
-//        .frame(width: 200, height: 200)
+        .frame(width: 200, height: 200)
 }

@@ -198,8 +198,11 @@ struct ContentView: View {
     @State private var cpuVm = CPUViewModel()
     @State private var permissionVm = PermissionsViewModel()
     @State private var musicVm = MusicViewModel()
-
+    @State private var message = "Swipe right to reveal"
+    
+    #if DEBUG
     @Default(.showGM) var showGM
+    #endif
     
     var notchPanelRect: CGRect
     private var notchSize = getClosedNotchSize()
@@ -207,10 +210,17 @@ struct ContentView: View {
     var body: some View {
         ZStack(alignment: .top) {
             NotchShape()
-                .fill(.white)
-                .shadow(color: notchVm.bHovering ? .black.opacity(0.6): .clear, radius: 2)
+                .fill(.black)
+                .shadow(color: notchVm.bHovering ? .black.opacity(0.6): .clear, radius: 5)
+                .onScrollWheelUp { direction in
+                    notchVm.shrinkOrExpand(direction: direction)
+                }
+                .gesture(TapGesture(count: 2).onEnded {
+                    notchVm.doubleTap()
+                })
                 .frame(width: notchVm.notchViewSize.width, height: notchVm.notchViewSize.height, alignment: .top)
             
+            #if DEBUG
             if ProcessInfo.processInfo.isSwiftUIPreview {
                 ZStack(alignment: .top) {
                     MusicLessLeftView()
@@ -222,8 +232,9 @@ struct ContentView: View {
                 .environment(permissionVm)
                 .environment(musicVm)
                 .environment(notchVm)
-                .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height) // 高度不变，宽度随实际宽度改变而改变
+                .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height + (notchVm.bHovering ? 5 : 0)) // 高度不变，宽度随实际宽度改变而改变
             }
+            #endif
             
             ZStack(alignment: .top) {
                 if let leftComponent = notchVm.currentSnapShot.leftComponent {
@@ -236,25 +247,21 @@ struct ContentView: View {
                         .frame(maxWidth: .infinity, alignment: .trailing)
                 }
             }
-            .environment(keyboardVm)
-            .environment(permissionVm)
-            .environment(musicVm)
-            .environment(notchVm)
-            .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height) // 高度不变，宽度随实际宽度改变而改变
+            .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height + (notchVm.bHovering ? 5 : 0)) // 高度不变，宽度随实际宽度改变而改变
         }
         .onHover(perform: { hovering in
             let bHovering = hovering
             Logger.log("Hovering Start: \(bHovering)", category: .ui)
-            withAnimation(.spring(duration: 0.5, bounce: 0.1)) {
-                if bHovering {
-                    notchVm.notchViewSize = CGSize(width: notchPanelRect.width-200, height: notchPanelRect.height)
-                } else {
-                    notchVm.notchViewSize = notchSize
-                }
+            withAnimation(.spring(duration: 0.5, bounce: 0.2)) {
                 notchVm.bHovering = bHovering
+                notchVm.refreshSize()
             }
             Logger.log("Hovering End: \(notchVm.bHovering)", category: .ui)
         })
+        .environment(keyboardVm)
+        .environment(permissionVm)
+        .environment(musicVm)
+        .environment(notchVm)
         .frame(maxWidth: notchPanelRect.width, maxHeight: notchPanelRect.height, alignment: .top) // 与最大宽度和高度一致
     }
     
