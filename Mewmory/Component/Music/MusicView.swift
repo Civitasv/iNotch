@@ -8,7 +8,29 @@
 import SwiftUI
 import Defaults
 
-struct MusicLessView: View {
+struct MusicLessLeftView: View {
+    @Environment(MusicViewModel.self) var musicVm
+    @Environment(NotchViewModel.self) var notchVm
+    @Namespace var albumArtNamespace
+
+    private var notchSize = getClosedNotchSize()
+
+    var body: some View {
+        Color.clear
+            .aspectRatio(1, contentMode: .fit)
+            .background(
+                Image(nsImage: musicVm.currentTrack.artwork ?? NSImage())
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            )
+            .clipped()
+            .clipShape(RoundedRectangle(cornerRadius: 4.0))
+            .matchedGeometryEffect(id: "albumArt", in: albumArtNamespace)
+            .frame(width: max(0, notchSize.height - 12), height: max(0, notchSize.height - 12), alignment: .center)
+    }
+}
+
+struct MusicLessRightView: View {
     @Environment(MusicViewModel.self) var musicVm
     @Environment(NotchViewModel.self) var notchVm
     @Default(.useMusicVisualizer) var useMusicVisualizer
@@ -18,44 +40,18 @@ struct MusicLessView: View {
     private var notchSize = getClosedNotchSize()
 
     var body: some View {
-        HStack {
-            HStack {
-                Color.clear
-                    .aspectRatio(1, contentMode: .fit)
-                    .background(
-                        Image(nsImage: musicVm.currentTrack.artwork ?? NSImage())
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    )
-                    .clipped()
-                    .clipShape(RoundedRectangle(cornerRadius: 4.0))
-                    .matchedGeometryEffect(id: "albumArt", in: albumArtNamespace)
-                    .frame(width: max(0, notchSize.height - 12), height: max(0, notchSize.height - 12))
-            }
-            .frame(width: max(0, notchSize.height - (notchVm.bHovering ? 0 : 12)), height: max(0, notchSize.height - (notchVm.bHovering ? 0 : 12)))
-
+        if useMusicVisualizer {
             Rectangle()
-                .fill(.black)
-                .frame(width: notchSize.width - 20)
-
-            HStack {
-                if useMusicVisualizer {
-                    Rectangle()
-                        .fill(coloredSpectrogram ? Color(nsColor: musicVm.currentTrack.avgColor).gradient : Color.gray.gradient)
-                        .frame(width: 50, alignment: .center)
-                        .matchedGeometryEffect(id: "spectrum", in: albumArtNamespace)
-                        .mask {
-                            AudioSpectrumView()
-                                .frame(width: 16, height: 12)
-                        }
-                        .frame(width: max(0, notchSize.height - (notchVm.bHovering ? 0 : 12)),
-                               height: max(0, notchSize.height - (notchVm.bHovering ? 0 : 12)), alignment: .center)
+                .fill(coloredSpectrogram ? Color(nsColor: musicVm.currentTrack.avgColor) : Color.gray)
+                .frame(width: 50, alignment: .center)
+                .matchedGeometryEffect(id: "spectrum", in: albumArtNamespace)
+                .mask {
+                    AudioSpectrumView()
+                        .frame(width: 16, height: 12)
                 }
-            }
-            .frame(width: max(0, notchSize.height - (notchVm.bHovering ? 0 : 12)),
-                   height: max(0, notchSize.height - (notchVm.bHovering ? 0 : 12)), alignment: .center)
+                .frame(width: max(0, notchSize.height - 12),
+                       height: max(0, notchSize.height - 12), alignment: .center)
         }
-        .frame(height: notchSize.height + (notchVm.bHovering ? 8 : 0), alignment: .center)
     }
 }
 
@@ -239,7 +235,7 @@ private struct CoverImageView: View {
 #Preview {
 //    MusicMoreView()
 //        .environment(MusicViewModel())
-    MusicLessView()
+    MusicLessLeftView()
         .environment(MusicViewModel())
         .environment(NotchViewModel())
 //        .frame(width: 200, height: 200)

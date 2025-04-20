@@ -39,6 +39,7 @@ final class MusicViewModel {
 
     // Private
     private var prevTitle: String = ""
+    private var prevIsPlaying: Bool = false
     private let appleMusic = application(name: "Music") as! AppleMusicApplication
     private let timer = Timer.publish(every: 0.13, on: .main, in: .common).autoconnect()
     private var cancellables = Set<AnyCancellable>()
@@ -80,6 +81,10 @@ final class MusicViewModel {
             }
             prevTitle = currentTrack.title
 //            Logger.log("Progress: \(currentTrack.progress) \(currentTrack.progressString)", category: .debug)
+        }
+        if currentTrack.isPlaying != prevIsPlaying {
+            postEvent(name: "MusicViewModel.CurrentTrack.IsPlaying", params: ["IsPlaying": currentTrack.isPlaying])
+            prevIsPlaying = currentTrack.isPlaying
         }
     }
 

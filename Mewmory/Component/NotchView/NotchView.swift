@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Defaults
+import Foundation
 
 private struct NotchPanelKey: EnvironmentKey {
     static let defaultValue: NSPanel? = nil
@@ -190,12 +192,15 @@ struct NotchView: View {
 
 // The View Inside Notch
 struct ContentView: View {
+    @State private var notchVm = NotchViewModel()
+    
     @State private var keyboardVm = KeyboardViewModel()
     @State private var cpuVm = CPUViewModel()
     @State private var permissionVm = PermissionsViewModel()
-    @State private var notchVm = NotchViewModel()
     @State private var musicVm = MusicViewModel()
 
+    @Default(.showGM) var showGM
+    
     var notchPanelRect: CGRect
     private var notchSize = getClosedNotchSize()
     
@@ -205,32 +210,51 @@ struct ContentView: View {
                 .fill(.white)
                 .shadow(color: notchVm.bHovering ? .black.opacity(0.6): .clear, radius: 2)
                 .frame(width: notchVm.notchViewSize.width, height: notchVm.notchViewSize.height, alignment: .top)
-                .onHover(perform: { hovering in
-                    let bHovering = hovering
-                    Logger.log("Hovering Start: \(bHovering)", category: .ui)
-                    withAnimation(.spring(duration: 0.5, bounce: 0.2)) {
-                        if bHovering {
-                            notchVm.notchViewSize = CGSize(width: notchPanelRect.width-200, height: notchSize.height)
-                        } else {
-                            notchVm.notchViewSize = notchSize
-                        }
-                        notchVm.bHovering = bHovering
-                    }
-                    Logger.log("Hovering End: \(notchVm.bHovering)", category: .ui)
-                })
             
-            HStack {
-                KeyboardView()
-                    .environment(keyboardVm)
-                    .environment(permissionVm)
-                MusicLessView()
-                    .environment(musicVm)
-                    .environment(notchVm)
-                BatteryView()
-                    .padding(5)
+            if ProcessInfo.processInfo.isSwiftUIPreview {
+                ZStack(alignment: .top) {
+                    MusicLessLeftView()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    MusicLessRightView()
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                .environment(keyboardVm)
+                .environment(permissionVm)
+                .environment(musicVm)
+                .environment(notchVm)
+                .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height) // 高度不变，宽度随实际宽度改变而改变
             }
-            .frame(width: notchVm.notchViewSize.width, height: notchSize.height, alignment: .trailing) // 高度不变，宽度随实际宽度改变而改变
+            
+            ZStack(alignment: .top) {
+                if let leftComponent = notchVm.currentSnapShot.leftComponent {
+                    leftComponent.content
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                
+                if let rightComponent = notchVm.currentSnapShot.rightComponent {
+                    rightComponent.content
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+            }
+            .environment(keyboardVm)
+            .environment(permissionVm)
+            .environment(musicVm)
+            .environment(notchVm)
+            .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height) // 高度不变，宽度随实际宽度改变而改变
         }
+        .onHover(perform: { hovering in
+            let bHovering = hovering
+            Logger.log("Hovering Start: \(bHovering)", category: .ui)
+            withAnimation(.spring(duration: 0.5, bounce: 0.1)) {
+                if bHovering {
+                    notchVm.notchViewSize = CGSize(width: notchPanelRect.width-200, height: notchPanelRect.height)
+                } else {
+                    notchVm.notchViewSize = notchSize
+                }
+                notchVm.bHovering = bHovering
+            }
+            Logger.log("Hovering End: \(notchVm.bHovering)", category: .ui)
+        })
         .frame(maxWidth: notchPanelRect.width, maxHeight: notchPanelRect.height, alignment: .top) // 与最大宽度和高度一致
     }
     
@@ -244,4 +268,7 @@ struct ContentView: View {
         .frame(width: 800, height: 300, alignment: .top)
         .environment(NotchViewModel())
         .environment(MusicViewModel())
+        .environment(KeyboardViewModel())
+        .environment(PermissionsViewModel())
+        .environment(CPUViewModel())
 }

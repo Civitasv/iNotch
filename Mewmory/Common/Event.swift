@@ -7,6 +7,9 @@
 
 import Foundation
 import SwiftUI
+import Combine
+
+private var cancellables = Set<AnyCancellable>()
 
 enum Signal: String {
     case Test = "test"
@@ -14,6 +17,14 @@ enum Signal: String {
 
 func postEvent(name: String, params: [AnyHashable : Any]? = nil) {
     NotificationCenter.default.post(name: Notification.Name(name), object: nil, userInfo: params)
+}
+
+func registerEvent(name: String, handler: @escaping ([AnyHashable: Any]?) -> Void) {
+    NotificationCenter.default.publisher(for: Notification.Name(name))
+        .sink { notification in
+            handler(notification.userInfo)
+        }
+        .store(in: &cancellables)
 }
 
 extension View {

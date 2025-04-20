@@ -17,7 +17,6 @@
 		4E1DC4E42DABDD8D003C561A /* CPUProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4E32DABDD8D003C561A /* CPUProvider.swift */; };
 		4E1DC4EA2DAC192C003C561A /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4E92DAC192C003C561A /* System.swift */; };
 		4E1DC4EC2DAC197F003C561A /* Battery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4EB2DAC197F003C561A /* Battery.swift */; };
-		4E1DC4EE2DAC1992003C561A /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4ED2DAC1992003C561A /* Process.swift */; };
 		4E1DC4F12DAC314C003C561A /* CPUViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4F02DAC314C003C561A /* CPUViewModel.swift */; };
 		4E1DC4F42DAD6AD3003C561A /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4F32DAD6AD3003C561A /* NotchShape.swift */; };
 		4E1DC4FB2DAD6CB7003C561A /* HelloAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4FA2DAD6CB7003C561A /* HelloAnimation.swift */; };
@@ -48,6 +47,7 @@
 		4E67DF4F2DB3DA7E0040F078 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 4E67DF4E2DB3DA7E0040F078 /* Defaults */; };
 		4E67DF512DB411FA0040F078 /* NSImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DF502DB411FA0040F078 /* NSImage+Ext.swift */; };
 		4E67DF5C2DB41AB30040F078 /* AudioSpectrumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DF5B2DB41AB30040F078 /* AudioSpectrumView.swift */; };
+		4E67DF602DB4DC720040F078 /* ProcessInfo+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DF5F2DB4DC720040F078 /* ProcessInfo+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +82,6 @@
 		4E1DC4E32DABDD8D003C561A /* CPUProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUProvider.swift; sourceTree = "<group>"; };
 		4E1DC4E92DAC192C003C561A /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		4E1DC4EB2DAC197F003C561A /* Battery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Battery.swift; sourceTree = "<group>"; };
-		4E1DC4ED2DAC1992003C561A /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 		4E1DC4F02DAC314C003C561A /* CPUViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUViewModel.swift; sourceTree = "<group>"; };
 		4E1DC4F32DAD6AD3003C561A /* NotchShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchShape.swift; sourceTree = "<group>"; };
 		4E1DC4FA2DAD6CB7003C561A /* HelloAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloAnimation.swift; sourceTree = "<group>"; };
@@ -114,6 +113,7 @@
 		4E2EE3162DB39FEB0057804D /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		4E67DF502DB411FA0040F078 /* NSImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Ext.swift"; sourceTree = "<group>"; };
 		4E67DF5B2DB41AB30040F078 /* AudioSpectrumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSpectrumView.swift; sourceTree = "<group>"; };
+		4E67DF5F2DB4DC720040F078 /* ProcessInfo+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProcessInfo+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,7 +219,6 @@
 			children = (
 				4E1DC4E92DAC192C003C561A /* System.swift */,
 				4E1DC4EB2DAC197F003C561A /* Battery.swift */,
-				4E1DC4ED2DAC1992003C561A /* Process.swift */,
 			);
 			path = SystemKit;
 			sourceTree = "<group>";
@@ -292,6 +291,7 @@
 				4E2EE2EE2DB2928A0057804D /* View+CornerRadius.swift */,
 				4E2EE3162DB39FEB0057804D /* String+Ext.swift */,
 				4E67DF502DB411FA0040F078 /* NSImage+Ext.swift */,
+				4E67DF5F2DB4DC720040F078 /* ProcessInfo+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -525,7 +525,6 @@
 				4E2EE2E02DAFD0570057804D /* BatteryView.swift in Sources */,
 				4E1DC4F12DAC314C003C561A /* CPUViewModel.swift in Sources */,
 				4E2EE2D02DAEAD350057804D /* KeyboardView.swift in Sources */,
-				4E1DC4EE2DAC1992003C561A /* Process.swift in Sources */,
 				4E2EE3082DB38AA30057804D /* GoogleChrome.swift in Sources */,
 				4E2EE2F12DB2B03C0057804D /* Event.swift in Sources */,
 				4E2EE2EA2DB156970057804D /* Constant.swift in Sources */,
@@ -541,6 +540,7 @@
 				4E2EE2D42DAEC7140057804D /* PermissionViewModel.swift in Sources */,
 				4E2EE2FC2DB372460057804D /* SpotifyBridge.swift in Sources */,
 				4E2EE3132DB393CA0057804D /* AppleMusic.swift in Sources */,
+				4E67DF602DB4DC720040F078 /* ProcessInfo+Ext.swift in Sources */,
 				4E2EE2FE2DB3838D0057804D /* ScriptingUtility.swift in Sources */,
 				4E1DC4FB2DAD6CB7003C561A /* HelloAnimation.swift in Sources */,
 				4E1DC4F42DAD6AD3003C561A /* NotchShape.swift in Sources */,

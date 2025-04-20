@@ -14,8 +14,8 @@
             filePath = "Mewmory/Component/Music/MusicViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "MusicViewModel"
             landmarkType = "3">
          </BreakpointContent>
@@ -50,6 +50,134 @@
             endingLineNumber = "15"
             landmarkName = "init()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CFF26713-F797-4513-95B8-71918A1CD22D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mewmory/Component/Music/MusicViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "updateAvgColor()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B003478-D4FF-4512-9C6B-066FAD4717C9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mewmory/Component/Music/MusicViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "refreshMusicInfo()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9216FAC1-0745-4388-ADD5-9137EE64E9CF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mewmory/Component/Music/MusicViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "updateAvgColor()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9216FAC1-0745-4388-ADD5-9137EE64E9CF - 96dd61e352df074b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mewmory.MusicViewModel.updateAvgColor() -&gt; ()"
+                  moduleName = "Mewmory"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/civitasv/Documents/project/Mewmory/Mewmory/Component/Music/MusicViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "224">
+               </Location>
+               <Location
+                  uuid = "9216FAC1-0745-4388-ADD5-9137EE64E9CF - acf0281f6fd64c5c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.NSColor&gt;) -&gt; () in Mewmory.MusicViewModel.updateAvgColor() -&gt; ()"
+                  moduleName = "Mewmory"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/civitasv/Documents/project/Mewmory/Mewmory/Component/Music/MusicViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "228">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3DC72D51-7F75-4882-BF07-4CD237C47FAA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mewmory/Component/Music/MusicViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "updateAvgColor()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3DC72D51-7F75-4882-BF07-4CD237C47FAA - 96dd61e352df072a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mewmory.MusicViewModel.updateAvgColor() -&gt; ()"
+                  moduleName = "Mewmory"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/civitasv/Documents/project/Mewmory/Mewmory/Component/Music/MusicViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "3DC72D51-7F75-4882-BF07-4CD237C47FAA - 96dd61e352df072a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mewmory.MusicViewModel.updateAvgColor() -&gt; ()"
+                  moduleName = "Mewmory"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/civitasv/Documents/project/Mewmory/Mewmory/Component/Music/MusicViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "160">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
