@@ -70,13 +70,9 @@ extension View {
 }
 
 struct ScrollWheelModifier: ViewModifier {
-    enum Direction {
-        case Up, Down, Left, Right
-    }
-
     @State private var subs = Set<AnyCancellable>() // Cancel onDisappear
 
-    var action: (Direction) -> Void
+    var action: (CGFloat, CGFloat) -> Void
     
     func body(content: Content) -> some View {
         content
@@ -91,21 +87,7 @@ struct ScrollWheelModifier: ViewModifier {
                       latest: true)
             .sink {
                 if let event = $0 {
-                    if event.deltaX > 4 {
-                        action(.Right)
-                    }
-                    
-                    if event.deltaX < -4 {
-                        action(.Left)
-                    }
-                    
-                    if event.deltaY > 4 {
-                        action(.Down)
-                    }
-                    
-                    if event.deltaY < -4 {
-                        action(.Up)
-                    }
+                    action(event.deltaX, event.deltaY)
                 }
           }
           .store(in: &subs)
@@ -113,7 +95,7 @@ struct ScrollWheelModifier: ViewModifier {
 }
 
 extension View {
-    func onScrollWheelUp(action: @escaping (ScrollWheelModifier.Direction) -> Void) -> some View {
+    func onScrollWheelUp(action: @escaping (CGFloat, CGFloat) -> Void) -> some View {
         modifier(ScrollWheelModifier(action: action) )
     }
 }

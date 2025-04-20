@@ -57,10 +57,6 @@ struct MusicLessRightView: View {
 
 struct MusicMoreView: View {
     @Environment(MusicViewModel.self) var musicVm
-
-    @State private var isHoveringPrevious = false
-    @State private var isHoveringPlayPause = false
-    @State private var isHoveringNext = false
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -104,89 +100,154 @@ struct MusicMoreView: View {
                         .foregroundStyle(Color.gray)
                         .animation(.default, value: musicVm.currentTrack)
                     HStack {
-                        Text(musicVm.currentTrack.progressString)
-                            .font(.caption)
-                            .foregroundStyle(Color.gray)
-                        ProgressView(value: musicVm.currentTrack.progressPercent, total: 1.0)
-                            .tint(Color(.black))
-                        Text(musicVm.currentTrack.durationString)
-                            .font(.caption)
-                            .foregroundStyle(Color.gray)
+                        TimelineView(.animation(minimumInterval: nil)) { timeline in
+                            MusicSliderView() { newValue in
+                                musicVm.seek(pos: newValue)
+                            }
+                            .padding(.top, 5)
+                            .frame(height: 36)
+                        }
                     }
                     HStack {
-                        Image(systemName: "backward.fill")
-                            .frame(width: 20, height: 20)
-                            .font(.title3)
-                            .padding()
-                            .background(Color.primary.opacity(isHoveringPrevious ? 0.3 : 0.1))
-                            .clipShape(Circle())
-                            .onTapGesture {
-                                musicVm.prevTrack()
-                            }
-                            .onHover { isHovering in
-                                withAnimation {
-                                    isHoveringPrevious = isHovering
-                                }
-                            }
-                        if #available(macOS 14.0, *) {
-                            Image(systemName: musicVm.currentTrack.isPlaying ? "pause.fill" : "play.fill")
-                                .frame(width: 25, height: 25)
-                                .font(.largeTitle)
-                                .padding()
-                                .background(Color.primary.opacity(isHoveringPlayPause ? 0.3 : 0.1))
-                                .clipShape(Circle())
-                                .onTapGesture {
-                                    musicVm.playPause()
-                                }
-                                .onHover { isHovering in
-                                    withAnimation {
-                                        isHoveringPlayPause = isHovering
-                                    }
-                                }
-                                .contentTransition(.symbolEffect)
+                        HoverButton(icon: "backward.fill", scale: .medium) {
+                            musicVm.prevTrack()
                         }
-                        else {
-                            Image(systemName: musicVm.currentTrack.isPlaying ? "pause.fill" : "play.fill")
-                                .frame(width: 25, height: 25)
-                                .font(.largeTitle)
-                                .padding()
-                                .background(Color.primary.opacity(isHoveringPlayPause ? 0.3 : 0.1))
-                                .clipShape(Circle())
-                                .onTapGesture {
-                                    musicVm.playPause()
-                                }
-                                .onHover { isHovering in
-                                    withAnimation(.spring(duration: 0.1)) {
-                                        isHoveringPlayPause = isHovering
-                                    }
-                                }
-//                                .animation(.default, value: musicVm.currentTrack.isPlaying)
+                        HoverButton(icon: musicVm.currentTrack.isPlaying ? "pause.fill" : "play.fill", scale: .large) {
+                            musicVm.playPause()
                         }
-
-                        Image(systemName: "forward.fill")
-                            .frame(width: 20, height: 20)
-                            .font(.title3)
-                            .padding()
-                            .background(Color.primary.opacity(isHoveringNext ? 0.3 : 0.1))
-                            .clipShape(Circle())
-                            .onTapGesture {
-                                musicVm.nextTrack()
-                            }
-                            .onHover { isHovering in
-                                withAnimation {
-                                    isHoveringNext = isHovering
-                                }
-                            }
+                        HoverButton(icon: "forward.fill", scale: .medium) {
+                            musicVm.nextTrack()
+                        }
                     }
                     Spacer()
                 }
                 Spacer()
             }
-            .frame(width: 500, height: 200)
             .padding()
         }
     }
 }
+
+struct MusicSliderView: View {
+    @Environment(MusicViewModel.self) var musicVm
+
+    @State private var sliderValue: Double = 0
+    @State private var dragging: Bool = false
+    
+    var onValueChange: (Double) -> Void
+
+    var body: some View {
+        VStack {
+            CustomSlider(
+                value: $sliderValue,
+                dragging: $dragging,
+                range: 0 ... musicVm.currentTrack.duration,
+                color: Color(nsColor: musicVm.currentTrack.avgColor).ensureMinimumBrightness(factor: 0.8),
+                onValueChange: onValueChange
+            )
+            .frame(height: 10, alignment: .center)
+            HStack {
+                Text(musicVm.currentTrack.progressString)
+                Spacer()
+                Text(musicVm.currentTrack.durationString)
+            }
+            .fontWeight(.medium)
+            .foregroundColor(Color(nsColor: musicVm.currentTrack.avgColor).ensureMinimumBrightness(factor: 0.6))
+            .font(.caption)
+        }
+        .onChange(of: musicVm.currentTrack.progress) { _, _ in
+            guard !dragging else { return }
+            sliderValue = musicVm.currentTrack.progress
+        }
+    }
+}
+
+struct CustomSlider: View {
+    @Binding var value: Double
+    @Binding var dragging: Bool
+    var range: ClosedRange<Double>
+    var color: Color = .white
+    var onValueChange: ((Double) -> Void)?
+
+    var body: some View {
+        GeometryReader { geometry in
+            let width = geometry.size.width
+            let height = CGFloat(dragging ? 9 : 5)
+            let rangeSpan = range.upperBound - range.lowerBound
+
+            let filledTrackWidth = min(rangeSpan == .zero ? 0 : ((value - range.lowerBound) / rangeSpan) * width, width)
+
+            ZStack(alignment: .leading) {
+                // Background track
+                Rectangle()
+                    .fill(.gray.opacity(0.3))
+                    .frame(height: height)
+
+                // Filled track
+                Rectangle()
+                    .fill(color)
+                    .frame(width: filledTrackWidth, height: height)
+            }
+            .cornerRadius(height / 2)
+            .frame(height: 10)
+            .contentShape(Rectangle())
+            .highPriorityGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { gesture in
+                        withAnimation {
+                            dragging = true
+                        }
+                        let newValue = range.lowerBound + Double(gesture.location.x / width) * rangeSpan
+                        value = min(max(newValue, range.lowerBound), range.upperBound)
+                    }
+                    .onEnded { _ in
+                        onValueChange?(value)
+                        dragging = false
+                    }
+            )
+            .animation(.bouncy.speed(1.4), value: dragging)
+        }
+    }
+}
+
+private struct HoverButton: View {
+    var icon: String
+    var iconColor: Color = .white;
+    var scale: Image.Scale = .medium
+    var action: () -> Void
+    var contentTransition: ContentTransition = .symbolEffect;
+    
+    @State private var isHovering = false
+
+    var body: some View {
+        let size = CGFloat(scale == .large ? 40 : 30)
+        
+        Button(action: action) {
+            Rectangle()
+                .fill(.clear)
+                .contentShape(Rectangle())
+                .frame(width: size, height: size)
+                .overlay {
+                    Capsule()
+                        .fill(isHovering ? Color.gray.opacity(0.2) : .clear)
+                        .frame(width: size, height: size)
+                        .overlay {
+                            Image(systemName: icon)
+                                .foregroundColor(iconColor)
+                                .contentTransition(contentTransition)
+                                .font(scale == .large ? .largeTitle : .body)
+                        }
+                }
+        }
+        .buttonStyle(PlainButtonStyle())
+        .onHover { hovering in
+            withAnimation(.smooth(duration: 0.3)) {
+                isHovering = hovering
+            }
+        }
+    }
+}
+
 
 private struct CoverImageView: View {
     @State private var shouldShowAlbumName = false
@@ -233,10 +294,10 @@ private struct CoverImageView: View {
 }
 
 #Preview {
-//    MusicMoreView()
-//        .environment(MusicViewModel())
-    MusicLessLeftView()
+    MusicMoreView()
         .environment(MusicViewModel())
-        .environment(NotchViewModel())
-        .frame(width: 200, height: 200)
+//    MusicLessLeftView()
+//        .environment(MusicViewModel())
+//        .environment(NotchViewModel())
+//        .frame(width: 200, height: 200)
 }

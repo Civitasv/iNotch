@@ -24,6 +24,7 @@ struct NotchApp: Identifiable, Equatable {
     let id = UUID()
     let leftComponent: NotchComponent?
     let rightComponent: NotchComponent?
+    let fullComponent: NotchComponent?
     
     static func == (lhs: NotchApp, rhs: NotchApp) -> Bool {
         return lhs.id == rhs.id
@@ -38,6 +39,7 @@ struct NotchTip: Identifiable, Equatable {
     let id = UUID()
     let leftComponent: NotchComponent?
     let rightComponent: NotchComponent?
+    let fullComponent: NotchComponent?
     let duration: Double
     
     static func == (lhs: NotchTip, rhs: NotchTip) -> Bool {
@@ -77,6 +79,7 @@ struct NotchComponent: Identifiable, Equatable {
 struct NotchSnapShot {
     var leftComponent: NotchComponent? = nil
     var rightComponent: NotchComponent? = nil
+    var fullComponent: NotchComponent? = nil
 }
 
 let musicLeftComponent = NotchComponent(appType: .Music) {
@@ -85,7 +88,10 @@ let musicLeftComponent = NotchComponent(appType: .Music) {
 let musicRightComponent = NotchComponent(appType: .Music) {
     MusicLessRightView()
 }
-let musicApp: NotchApp = NotchApp(leftComponent: musicLeftComponent, rightComponent: musicRightComponent)
+let musicFullComponent = NotchComponent(appType: .Music) {
+    MusicMoreView()
+}
+let musicApp: NotchApp = NotchApp(leftComponent: musicLeftComponent, rightComponent: musicRightComponent, fullComponent: musicFullComponent)
 
 let allApps: [NotchAppType: NotchApp] = [
     .Music : musicApp
@@ -95,7 +101,7 @@ let allApps: [NotchAppType: NotchApp] = [
 let batteryRightComponent = NotchComponent(tipType: .Battery) {
     BatteryView()
 }
-let batteryTip: NotchTip = NotchTip(leftComponent: nil, rightComponent: batteryRightComponent, duration: 2.0)
+let batteryTip: NotchTip = NotchTip(leftComponent: nil, rightComponent: batteryRightComponent, fullComponent: nil, duration: 2.0)
 
 let allTips: [NotchTipType: NotchTip] = [
     .Battery : batteryTip,
@@ -156,6 +162,9 @@ final class NotchViewModel {
             // app 的右 component 存在的话，无论如何都要占用
             addToRightSlot(component: rightComponent)
         }
+        if let fullComponent = app.fullComponent {
+            addToFullSlot(component: fullComponent)
+        }
     }
     
     func addTip(_ tip: NotchTip) {
@@ -168,6 +177,9 @@ final class NotchViewModel {
             // tip 的右 component 存在的话，无论如何都要占用
             addToRightSlot(component: rightComponent)
         }
+        if let fullComponent = tip.fullComponent {
+            addToFullSlot(component: fullComponent)
+        }
     }
     
     private func addToLeftSlot(component: NotchComponent) {
@@ -176,6 +188,10 @@ final class NotchViewModel {
     
     private func addToRightSlot(component: NotchComponent) {
         currentSnapShot.rightComponent = component
+    }
+    
+    private func addToFullSlot(component: NotchComponent) {
+        currentSnapShot.fullComponent = component
     }
     
     // 导航的只可能是 app，tip存在时不允许滑动
@@ -204,23 +220,11 @@ final class NotchViewModel {
         }
     }
     
-    func refreshSize() {
-        switch displayMode {
-        case .Hide:
-            withAnimation(.spring(duration: 0.2, bounce: 0.1)) {
-                notchViewSize = CGSize(width: notchSize.width + (bHovering ? 5 : 0), height: notchSize.height + (bHovering ? 5 : 0))
-            }
-        case .Less:
-            withAnimation(.spring(duration: 0.4, bounce: 0.2)) {
-                notchViewSize = CGSize(width: notchSize.width + (bHovering ? 105 : 100), height: notchSize.height + (bHovering ? 5 : 0))
-            }
-        case .More:
-            withAnimation(.spring(duration: 0.5, bounce: 0.1)) {
-                notchViewSize = CGSize(width: notchPanelRect.width, height: notchPanelRect.height)
-            }
-        }
-    }
     
+    enum Direction {
+        case None, Up, Down, Left, Right
+    }
+
     func doubleTap() {
         if reachMore {
             shrinkOrExpand(direction: .Up)
@@ -236,11 +240,24 @@ final class NotchViewModel {
         }
     }
     
-    func shrinkOrExpand(direction: ScrollWheelModifier.Direction) {
-        Logger.log("Direction: \(direction)", category: .debug)
-        if direction == .Right || direction == .Left {
-            return
+    func shrinkOrExpand(deltaX: CGFloat, deltaY: CGFloat) {
+        var direction: Direction = .None
+        if displayMode == .Hide && deltaY > 3 {
+            direction = .Down
         }
+        else if displayMode == .Less && deltaY > 3 {
+            direction = .Down
+        }
+        if displayMode == .Less && deltaY < -3 {
+            direction = .Up
+        }
+        else if displayMode == .More && deltaY < -3 {
+            direction = .Up
+        }
+        shrinkOrExpand(direction: direction)
+    }
+    
+    func shrinkOrExpand(direction: Direction) {
         var newDisplayMode: NotchDisplayMode = displayMode
         if direction == .Up {
             if newDisplayMode == .More {
@@ -261,6 +278,23 @@ final class NotchViewModel {
         if displayMode != newDisplayMode {
             displayMode = newDisplayMode
             self.refreshSize()
+        }
+    }
+    
+    func refreshSize() {
+        switch displayMode {
+        case .Hide:
+            withAnimation(.spring(duration: 0.2, bounce: 0.1)) {
+                notchViewSize = CGSize(width: notchSize.width + (bHovering ? 5 : 0), height: notchSize.height + (bHovering ? 5 : 0))
+            }
+        case .Less:
+            withAnimation(.spring(duration: 0.4, bounce: 0.2)) {
+                notchViewSize = CGSize(width: notchSize.width + (bHovering ? 105 : 100), height: notchSize.height + (bHovering ? 5 : 0))
+            }
+        case .More:
+            withAnimation(.spring(duration: 0.5, bounce: 0.1)) {
+                notchViewSize = CGSize(width: notchPanelRect.width, height: notchPanelRect.height)
+            }
         }
     }
 }

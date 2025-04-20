@@ -212,8 +212,8 @@ struct ContentView: View {
             NotchShape()
                 .fill(.black)
                 .shadow(color: notchVm.bHovering ? .black.opacity(0.6): .clear, radius: 5)
-                .onScrollWheelUp { direction in
-                    notchVm.shrinkOrExpand(direction: direction)
+                .onScrollWheelUp { deltaX, deltaY in
+                    notchVm.shrinkOrExpand(deltaX: deltaX, deltaY: deltaY)
                 }
                 .gesture(TapGesture(count: 2).onEnded {
                     notchVm.doubleTap()
@@ -222,32 +222,51 @@ struct ContentView: View {
             
             #if DEBUG
             if ProcessInfo.processInfo.isSwiftUIPreview {
-                ZStack(alignment: .top) {
-                    MusicLessLeftView()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    MusicLessRightView()
-                        .frame(maxWidth: .infinity, alignment: .trailing)
+                if notchVm.displayMode == .More {
+                    ZStack(alignment: .top) {
+                        VStack (alignment: .center) {
+                            MusicMoreView()
+                                .frame(alignment: .center)
+                        }
+                    }
+                    .padding(10)
+                    .frame(width: notchVm.notchViewSize.width - 20, height: notchVm.notchViewSize.height)
                 }
-                .environment(keyboardVm)
-                .environment(permissionVm)
-                .environment(musicVm)
-                .environment(notchVm)
-                .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height + (notchVm.bHovering ? 5 : 0)) // 高度不变，宽度随实际宽度改变而改变
+                else {
+                    ZStack(alignment: .top) {
+                        MusicLessLeftView()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        MusicLessRightView()
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                    .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height + (notchVm.bHovering ? 5 : 0)) // 高度不变，宽度随实际宽度改变而改变
+                }
             }
             #endif
-            
-            ZStack(alignment: .top) {
-                if let leftComponent = notchVm.currentSnapShot.leftComponent {
-                    leftComponent.content
-                        .frame(maxWidth: .infinity, alignment: .leading)
+            if notchVm.displayMode == .More {
+                ZStack(alignment: .top) {
+                    if let fullComponent = notchVm.currentSnapShot.fullComponent {
+                        fullComponent.content
+                            .frame(alignment: .center)
+                    }
                 }
-                
-                if let rightComponent = notchVm.currentSnapShot.rightComponent {
-                    rightComponent.content
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                }
+                .padding(10)
+                .frame(width: notchVm.notchViewSize.width - 20, height: notchVm.notchViewSize.height)
             }
-            .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height + (notchVm.bHovering ? 5 : 0)) // 高度不变，宽度随实际宽度改变而改变
+            else {
+                ZStack(alignment: .top) {
+                    if let leftComponent = notchVm.currentSnapShot.leftComponent {
+                        leftComponent.content
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    
+                    if let rightComponent = notchVm.currentSnapShot.rightComponent {
+                        rightComponent.content
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                }
+                .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height + (notchVm.bHovering ? 5 : 0)) // 高度不变，宽度随实际宽度改变而改变
+            }
         }
         .onHover(perform: { hovering in
             let bHovering = hovering

@@ -186,4 +186,8 @@ final class MusicViewModel {
     func nextTrack() {
         appleMusic.nextTrack?()
     }
+    
+    func seek(pos: Double) {
+        appleMusic.setPlayerPosition?(pos)
+    }
 }
