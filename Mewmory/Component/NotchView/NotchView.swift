@@ -196,7 +196,6 @@ struct ContentView: View {
     
     @State private var keyboardVm = KeyboardViewModel()
     @State private var cpuVm = CPUViewModel()
-    @State private var permissionVm = PermissionsViewModel()
     @State private var musicVm = MusicViewModel()
     @State private var message = "Swipe right to reveal"
     
@@ -233,13 +232,15 @@ struct ContentView: View {
                     .frame(width: notchVm.notchViewSize.width - 20, height: notchVm.notchViewSize.height)
                 }
                 else {
+                    KeyboardView()
+                        .position(x: (notchPanelRect.width-notchVm.notchViewSize.width) / 2 - 30, y: notchVm.notchViewSize.height / 2)
                     ZStack(alignment: .top) {
                         MusicLessLeftView()
                             .frame(maxWidth: .infinity, alignment: .leading)
                         MusicLessRightView()
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height + (notchVm.bHovering ? 5 : 0)) // 高度不变，宽度随实际宽度改变而改变
+                    .frame(width: notchVm.notchViewSize.width - 20, height: notchVm.notchViewSize.height) // 高度不变，宽度随实际宽度改变而改变
                 }
             }
             #endif
@@ -265,7 +266,7 @@ struct ContentView: View {
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                 }
-                .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height + (notchVm.bHovering ? 5 : 0)) // 高度不变，宽度随实际宽度改变而改变
+                .frame(width: notchVm.notchViewSize.width-20, height: notchVm.notchViewSize.height) // 高度不变，宽度随实际宽度改变而改变
             }
         }
         .onHover(perform: { hovering in
@@ -278,7 +279,6 @@ struct ContentView: View {
             Logger.log("Hovering End: \(notchVm.bHovering)", category: .ui)
         })
         .environment(keyboardVm)
-        .environment(permissionVm)
         .environment(musicVm)
         .environment(notchVm)
         .frame(maxWidth: notchPanelRect.width, maxHeight: notchPanelRect.height, alignment: .top) // 与最大宽度和高度一致
@@ -295,6 +295,5 @@ struct ContentView: View {
         .environment(NotchViewModel())
         .environment(MusicViewModel())
         .environment(KeyboardViewModel())
-        .environment(PermissionsViewModel())
         .environment(CPUViewModel())
 }

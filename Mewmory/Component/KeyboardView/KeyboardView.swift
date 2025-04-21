@@ -9,19 +9,36 @@ import SwiftUI
 
 struct KeyboardView: View {
     @Environment(KeyboardViewModel.self) private var keyboardVm
-    @Environment(PermissionsViewModel.self) private var permissionVm
-
+    @Environment(NotchViewModel.self) private var notchVm
+    
+    private var notchSize = getClosedNotchSize()
     var body: some View {
-        Text("Hello, \(String(permissionVm.isTrusted))!")
-            .onAppear() {
-                permissionVm.pollAccessibilityPrivileges {
-                    self.keyboardVm.start()
-                }
+        Key(width: 100, height: notchSize.height, key: keyboardVm.keyString, modifier: keyboardVm.modifierString)
+    }
+}
+
+struct Key: View {
+    var width: CGFloat
+    var height: CGFloat
+    var key: String
+    var modifier: String
+    
+    var body: some View {
+        HStack(alignment: .center, spacing: 0) {
+            if !modifier.isEmpty {
+                Text(modifier)
+                Text(" + ")
             }
-        Text(keyboardVm.currentKey)
+            
+            Text(key)
+        }
+        .frame(width: width, height: height)
     }
 }
 
 #Preview {
     KeyboardView()
+        .environment(KeyboardViewModel())
+        .environment(NotchViewModel())
+        .frame(width: 200, height: 200)
 }

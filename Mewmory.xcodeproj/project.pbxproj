@@ -23,7 +23,6 @@
 		4E1DC4FE2DAD6D74003C561A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4FD2DAD6D74003C561A /* Logger.swift */; };
 		4E2EE2D02DAEAD350057804D /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2CF2DAEAD350057804D /* KeyboardView.swift */; };
 		4E2EE2D22DAEAD870057804D /* KeyboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2D12DAEAD870057804D /* KeyboardViewModel.swift */; };
-		4E2EE2D42DAEC7140057804D /* PermissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2D32DAEC7140057804D /* PermissionViewModel.swift */; };
 		4E2EE2D72DAFC8010057804D /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2D62DAFC8010057804D /* NotchView.swift */; };
 		4E2EE2E02DAFD0570057804D /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2DF2DAFD0570057804D /* BatteryView.swift */; };
 		4E2EE2E22DAFD0A90057804D /* BatteryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2E12DAFD0A90057804D /* BatteryViewModel.swift */; };
@@ -88,7 +87,6 @@
 		4E1DC4FD2DAD6D74003C561A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		4E2EE2CF2DAEAD350057804D /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		4E2EE2D12DAEAD870057804D /* KeyboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewModel.swift; sourceTree = "<group>"; };
-		4E2EE2D32DAEC7140057804D /* PermissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewModel.swift; sourceTree = "<group>"; };
 		4E2EE2D62DAFC8010057804D /* NotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
 		4E2EE2DF2DAFD0570057804D /* BatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
 		4E2EE2E12DAFD0A90057804D /* BatteryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryViewModel.swift; sourceTree = "<group>"; };
@@ -247,7 +245,6 @@
 			children = (
 				4E2EE3002DB389B10057804D /* GoogleChrome */,
 				4E2EE2F52DB354520057804D /* Music */,
-				4E2EE2F42DB3539B0057804D /* Common */,
 				4E2EE2F32DB353840057804D /* SystemView */,
 				4E2EE2F22DB353710057804D /* Hud */,
 				4E2EE2DE2DAFD0400057804D /* Battery */,
@@ -310,14 +307,6 @@
 				4E1DC4F02DAC314C003C561A /* CPUViewModel.swift */,
 			);
 			path = SystemView;
-			sourceTree = "<group>";
-		};
-		4E2EE2F42DB3539B0057804D /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				4E2EE2D32DAEC7140057804D /* PermissionViewModel.swift */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		4E2EE2F52DB354520057804D /* Music */ = {
@@ -537,7 +526,6 @@
 				4E67DF5C2DB41AB30040F078 /* AudioSpectrumView.swift in Sources */,
 				4E2EE2F72DB3546B0057804D /* MusicView.swift in Sources */,
 				4E2EE3172DB39FEB0057804D /* String+Ext.swift in Sources */,
-				4E2EE2D42DAEC7140057804D /* PermissionViewModel.swift in Sources */,
 				4E2EE2FC2DB372460057804D /* SpotifyBridge.swift in Sources */,
 				4E2EE3132DB393CA0057804D /* AppleMusic.swift in Sources */,
 				4E67DF602DB4DC720040F078 /* ProcessInfo+Ext.swift in Sources */,
