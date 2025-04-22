@@ -218,6 +218,15 @@ struct ContentView: View {
                     notchVm.doubleTap()
                 })
                 .frame(width: notchVm.notchViewSize.width, height: notchVm.notchViewSize.height, alignment: .top)
+                .onHover(perform: { hovering in
+                    let bHovering = hovering
+                    Logger.log("Hovering Start: \(bHovering)", category: .ui)
+                    withAnimation(.spring(duration: 0.5, bounce: 0.2)) {
+                        notchVm.bHovering = bHovering
+                        notchVm.refreshSize()
+                    }
+                    Logger.log("Hovering End: \(notchVm.bHovering)", category: .ui)
+                })
             
             #if DEBUG
             if ProcessInfo.processInfo.isSwiftUIPreview {
@@ -232,15 +241,13 @@ struct ContentView: View {
                     .frame(width: notchVm.notchViewSize.width - 20, height: notchVm.notchViewSize.height)
                 }
                 else {
-                    KeyboardView()
-                        .position(x: (notchPanelRect.width-notchVm.notchViewSize.width) / 2 - 30, y: notchVm.notchViewSize.height / 2)
                     ZStack(alignment: .top) {
                         MusicLessLeftView()
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .leading)
                         MusicLessRightView()
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .trailing)
                     }
-                    .frame(width: notchVm.notchViewSize.width - 20, height: notchVm.notchViewSize.height) // 高度不变，宽度随实际宽度改变而改变
+                    .frame(width: notchVm.notchViewSize.width - 20, height: notchSize.height) // 高度不变，宽度随实际宽度改变而改变
                 }
             }
             #endif
@@ -255,29 +262,25 @@ struct ContentView: View {
                 .frame(width: notchVm.notchViewSize.width - 20, height: notchVm.notchViewSize.height)
             }
             else {
+                if notchVm.showKeyPanel {
+                    KeyboardView()
+                        .frame(width: notchVm.notchViewSize.width - 20, height: notchSize.height)
+                        .position(x: (notchPanelRect.width) / 2, y: (notchVm.notchViewSize.height + notchSize.height) / 2)
+                }
                 ZStack(alignment: .top) {
                     if let leftComponent = notchVm.currentSnapShot.leftComponent {
                         leftComponent.content
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .leading)
                     }
                     
                     if let rightComponent = notchVm.currentSnapShot.rightComponent {
                         rightComponent.content
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .trailing)
                     }
                 }
-                .frame(width: notchVm.notchViewSize.width-20, height: notchVm.notchViewSize.height) // 高度不变，宽度随实际宽度改变而改变
+                .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height) // 高度不变，宽度随实际宽度改变而改变
             }
         }
-        .onHover(perform: { hovering in
-            let bHovering = hovering
-            Logger.log("Hovering Start: \(bHovering)", category: .ui)
-            withAnimation(.spring(duration: 0.5, bounce: 0.2)) {
-                notchVm.bHovering = bHovering
-                notchVm.refreshSize()
-            }
-            Logger.log("Hovering End: \(notchVm.bHovering)", category: .ui)
-        })
         .environment(keyboardVm)
         .environment(musicVm)
         .environment(notchVm)

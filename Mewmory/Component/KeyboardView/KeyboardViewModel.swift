@@ -18,16 +18,16 @@ final class KeyboardViewModel {
         var result = ""
         guard let modifierFlags = modifierFlags else { return result }
         if modifierFlags.contains(.command) {
-            result += "Command"
+            result += "⌘"
         }
         if modifierFlags.contains(.control) {
-            result += " + Ctrl"
+            result += "⌃"
         }
         if modifierFlags.contains(.shift) {
-            result += " + Shift"
+            result += "⇧"
         }
         if modifierFlags.contains(.option) {
-            result += " + Option"
+            result += "⌥"
         }
         return result
     }
@@ -35,7 +35,51 @@ final class KeyboardViewModel {
     var isTrusted: Bool = AXIsProcessTrusted() // 是否允许访问当前点击的按键
     private var monitor: Any?
     private var specialKeys: [UInt16:String] = [
-        126: "⬆️"
+        126: "↑",
+        125: "↓",
+        124: "→",
+        123: "←",
+        48: "⇥",
+        53: "⎋",
+        71: "⌧",
+        51: "⌫",
+        117: "⌦",
+        114: "⃝",
+        115: "↖",
+        119: "↘",
+        116: "⇞",
+        121: "⇟",
+        36: "↩",
+        76: "↩",
+        145: "🔅",
+        144: "🔆",
+        160: "<>",
+        131: "🚀",
+        177: "🔍",
+        176: "🎤",
+        178: "⏾",
+        49: "␣",
+        179: "fn",
+        122: "F1",
+        120: "F2",
+        99: "F3",
+        118: "F4",
+        96: "F5",
+        97: "F6",
+        98: "F7",
+        100: "F8",
+        101: "F9",
+        109: "F10",
+        103: "F11",
+        111: "F12",
+        105: "F13",
+        107: "F14",
+        113: "F15",
+        106: "F16",
+        64: "F17",
+        79: "F18",
+        80: "F19",
+        90: "F20"
     ]
 
     init() {
@@ -63,6 +107,11 @@ final class KeyboardViewModel {
                 
                 keyString = charactersIgnoringModifiers
             }
+            postEvent(name: "KeyboardViewModel.IsPressKey", params: ["IsPressKey": true])
+        }
+        
+        NSEvent.addGlobalMonitorForEvents(matching: .keyUp) { event in
+            postEvent(name: "KeyboardViewModel.IsPressKey", params: ["IsPressKey": false])
         }
     }
     

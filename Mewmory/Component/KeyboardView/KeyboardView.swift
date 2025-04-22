@@ -14,6 +14,7 @@ struct KeyboardView: View {
     private var notchSize = getClosedNotchSize()
     var body: some View {
         Key(width: 100, height: notchSize.height, key: keyboardVm.keyString, modifier: keyboardVm.modifierString)
+            .frame(width: 80, height: notchSize.height)
     }
 }
 
