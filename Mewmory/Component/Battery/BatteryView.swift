@@ -58,7 +58,7 @@ struct BatteryIcon: View {
 }
 
 struct BatteryView: View {
-    @State var batteryVm = BatteryViewModel(percentage: 20, bCharging: true)
+    @State var batteryVm = BatteryViewModel()
     
     var body: some View {
         HStack {

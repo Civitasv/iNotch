@@ -197,6 +197,7 @@ struct ContentView: View {
     @State private var keyboardVm = KeyboardViewModel()
     @State private var cpuVm = CPUViewModel()
     @State private var musicVm = MusicViewModel()
+    @State private var batteryVm = BatteryViewModel()
     @State private var message = "Swipe right to reveal"
     
     #if DEBUG
@@ -262,7 +263,12 @@ struct ContentView: View {
                 .frame(width: notchVm.notchViewSize.width - 20, height: notchVm.notchViewSize.height)
             }
             else {
-                if notchVm.showKeyPanel {
+                if notchVm.showTips {
+                    Text(notchVm.tips)
+                        .frame(width: notchVm.notchViewSize.width - 20, height: notchSize.height)
+                        .position(x: (notchPanelRect.width) / 2, y: (notchVm.notchViewSize.height + notchSize.height) / 2)
+                }
+                else if notchVm.showKeyPanel {
                     KeyboardView()
                         .frame(width: notchVm.notchViewSize.width - 20, height: notchSize.height)
                         .position(x: (notchPanelRect.width) / 2, y: (notchVm.notchViewSize.height + notchSize.height) / 2)

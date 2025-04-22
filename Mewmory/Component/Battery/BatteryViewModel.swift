@@ -13,12 +13,11 @@ import SwiftUI
 final class BatteryViewModel {
     var percentage: Int = 0
     var bCharging: Bool = false
+    var lowPowerTipsShown: Bool = false
     private var powerSourceChangedCallback: IOPowerSourceCallbackType?
     private var runLoopSource: Unmanaged<CFRunLoopSource>?
 
-    init(percentage: Int, bCharging: Bool) {
-        self.percentage = percentage
-        self.bCharging = bCharging
+    init() {
         self.updateBatteryStatus()
         self.startMonitoring()
     }
@@ -56,6 +55,11 @@ final class BatteryViewModel {
                     Logger.log("isACPower: \(isACPower)", category: .ui)
                     withAnimation {
                         self.bCharging = bCharging || isACPower
+                    }
+                    
+                    if !isLowPowerMode() && !lowPowerTipsShown {
+                        postEvent(name: "NotchViewModel.ShowTips", params: ["Tips": "You're In Low Power Mode"])
+                        lowPowerTipsShown = true
                     }
                 }
                
