@@ -57,12 +57,11 @@ final class BatteryViewModel {
                         self.bCharging = bCharging || isACPower
                     }
                     
-                    if !isLowPowerMode() && !lowPowerTipsShown {
-                        postEvent(name: "NotchViewModel.ShowTips", params: ["Tips": "You're In Low Power Mode"])
+                    if isLowPowerMode() && !lowPowerTipsShown {
+                        postEvent(name: "NotchViewModel.ShowTips", params: ["Tips": "⚠️ 电量过低"])
                         lowPowerTipsShown = true
                     }
                 }
-               
             }
         }
     }

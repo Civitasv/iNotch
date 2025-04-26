@@ -33,7 +33,6 @@ struct MewmoryApp: App {
     
     init() {
         Logger.log("MewmoryApp Init", category: .ui)
-
     }
     
     public func setData() -> Int {

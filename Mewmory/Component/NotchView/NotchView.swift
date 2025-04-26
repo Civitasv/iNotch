@@ -265,6 +265,7 @@ struct ContentView: View {
             else {
                 if notchVm.showTips {
                     Text(notchVm.tips)
+                        .foregroundStyle(.white)
                         .frame(width: notchVm.notchViewSize.width - 20, height: notchSize.height)
                         .position(x: (notchPanelRect.width) / 2, y: (notchVm.notchViewSize.height + notchSize.height) / 2)
                 }

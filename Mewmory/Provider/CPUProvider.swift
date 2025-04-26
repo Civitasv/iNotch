@@ -12,7 +12,7 @@ import System
 final class CPUProvider {
     fileprivate static var system = System()
 
-    public static func getCPUUsage() -> Double? {
+    public static func getCPUUsage() -> Double {
         var usage = system.usageCPU()
         
         return usage.system + usage.user

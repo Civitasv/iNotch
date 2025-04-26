@@ -28,10 +28,13 @@ struct Key: View {
         HStack(alignment: .center, spacing: 0) {
             if !modifier.isEmpty {
                 Text(modifier)
+                    .foregroundStyle(.white)
                 Text(" + ")
+                    .foregroundStyle(.red)
             }
             
             Text(key)
+                .foregroundStyle(.white)
         }
         .frame(width: width, height: height)
     }

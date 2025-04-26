@@ -8,6 +8,15 @@
         "revision" : "38925e3cfacf3fb89a81a35b1cd44fd5a5b7e0fa",
         "version" : "8.2.0"
       }
+    },
+    {
+      "identity" : "setting",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/aheze/Setting",
+      "state" : {
+        "branch" : "main",
+        "revision" : "0f29fd49a514c5d63469884d7b45a4842eaf0e6b"
+      }
     }
   ],
   "version" : 2

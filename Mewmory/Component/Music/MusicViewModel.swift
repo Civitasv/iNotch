@@ -32,7 +32,7 @@ struct MusicTrack: Equatable {
 // Attention: 通过程序直接获取 nowPlaying 的值是 private api，无法上 apple store: https://stackoverflow.com/a/61494862
 
 @Observable
-final class MusicViewModel {
+final class MusicViewModel: BasicViewModel {
     // Observed Variables
     var currentTrack: MusicTrack = MusicTrack()
     var automationPermissionEnabled = false
@@ -41,24 +41,26 @@ final class MusicViewModel {
     private var prevTitle: String = ""
     private var prevIsPlaying: Bool = false
     private let appleMusic = application(name: "Music") as! AppleMusicApplication
-    private let timer = Timer.publish(every: 0.13, on: .main, in: .common).autoconnect()
-    private var cancellables = Set<AnyCancellable>()
 
-    init() {
+    private let qqMusic = QQMusicApplication()
+
+    override init(tickInterval: TimeInterval = 0.2) {
         Logger.log("Init \(appleMusic.mute!) \(appleMusic.name!)", category: .debug)
 
+        super.init(tickInterval: tickInterval)
         Task {
             await self.registerControlAppleMusic()
         }
-        // refresh it every 1s
-        timer.receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self else { return }
-                self.refreshMusicInfo()
-            }
-            .store(in: &cancellables)
+        // What is Task: https://stackoverflow.com/a/70979280
+        Task {
+            await qqMusic.nextTrack()
+        }
     }
 
+    public override func tick(_ params: [AnyHashable : Any]?) {
+        refreshMusicInfo()
+    }
+    
     deinit {
     }
 

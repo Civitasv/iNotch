@@ -8,6 +8,9 @@
 import Foundation
 import Defaults
 import SwiftUI
+import Combine
+import Carbon
+import AppleScriptObjC
 
 // 灵动岛显示模式，分为隐藏、较少显示、更多显示
 enum NotchDisplayMode: Int {
@@ -125,12 +128,21 @@ final class NotchViewModel {
     private var notchSize: CGSize = getClosedNotchSize()
     private var notchPanelRect: CGRect = CGRect(x: 0, y: 0, width: 610, height: 200)
 
+    private let timer = Timer.publish(every: 0.2, on: .main, in: .common).autoconnect()
+    private var cancellables = Set<AnyCancellable>()
+    
     init() {
         registerEvents()
     }
     
     func registerEvents() {
         Logger.log("RegisterEvents", category: .debug)
+        timer.receive(on: DispatchQueue.main)
+            .sink { _ in
+                postEvent(name: "MewmoryApp.Tick", params: nil)
+            }
+            .store(in: &cancellables)
+        
         registerEvent(name: "MusicViewModel.CurrentTrack.IsPlaying") { [weak self] userInfo in
             guard let self else { return }
             guard let userInfo = userInfo else {
@@ -155,7 +167,7 @@ final class NotchViewModel {
             guard let isPressKey = userInfo["IsPressKey"] as? Bool else {
                return
             }
-            Logger.log("IsPressKey: \(isPressKey)", category: .debug)
+//            Logger.log("IsPressKey: \(isPressKey)", category: .debug)
             keyPanelHideTimer?.invalidate()
 
             if isPressKey {

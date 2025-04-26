@@ -95,7 +95,7 @@ final class KeyboardViewModel {
     /// 开始监听
     private func startMonitoring() {
         self.monitor = NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { [weak self] event in
-            Logger.log("MewmoryApp Keydown: \(event.keyCode)", category: .debug)
+//            Logger.log("MewmoryApp Keydown: \(event.keyCode)", category: .debug)
             guard let self else { return }
             modifierFlags = event.modifierFlags
             
