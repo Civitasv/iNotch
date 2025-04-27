@@ -51,8 +51,8 @@
 		4E67DF682DBCBC860040F078 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DF672DBCBC860040F078 /* SettingView.swift */; };
 		4E67DF6A2DBCDF400040F078 /* TickProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DF692DBCDF400040F078 /* TickProtocol.swift */; };
 		4E67DF722DBD3A0C0040F078 /* QQMusicApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DF712DBD3A0C0040F078 /* QQMusicApplication.swift */; };
-		4E67DF792DBE7EC30040F078 /* VoiceAjustingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DF782DBE7EC30040F078 /* VoiceAjustingViewModel.swift */; };
-		4E67DF7B2DBE7ED30040F078 /* VoiceAdjustingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DF7A2DBE7ED30040F078 /* VoiceAdjustingView.swift */; };
+		4E67DF792DBE7EC30040F078 /* SoundAdjustingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DF782DBE7EC30040F078 /* SoundAdjustingViewModel.swift */; };
+		4E67DF7B2DBE7ED30040F078 /* SoundAdjustingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DF7A2DBE7ED30040F078 /* SoundAdjustingView.swift */; };
 		4E67DF7E2DBE81370040F078 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DF7D2DBE81370040F078 /* Sound.swift */; };
 		4E67DF802DBE814A0040F078 /* SoundOutputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DF7F2DBE814A0040F078 /* SoundOutputManager.swift */; };
 		4E67DF822DBE816A0040F078 /* SoundOutputManager+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DF812DBE816A0040F078 /* SoundOutputManager+Properties.swift */; };
@@ -125,8 +125,8 @@
 		4E67DF672DBCBC860040F078 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		4E67DF692DBCDF400040F078 /* TickProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickProtocol.swift; sourceTree = "<group>"; };
 		4E67DF712DBD3A0C0040F078 /* QQMusicApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQMusicApplication.swift; sourceTree = "<group>"; };
-		4E67DF782DBE7EC30040F078 /* VoiceAjustingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceAjustingViewModel.swift; sourceTree = "<group>"; };
-		4E67DF7A2DBE7ED30040F078 /* VoiceAdjustingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceAdjustingView.swift; sourceTree = "<group>"; };
+		4E67DF782DBE7EC30040F078 /* SoundAdjustingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundAdjustingViewModel.swift; sourceTree = "<group>"; };
+		4E67DF7A2DBE7ED30040F078 /* SoundAdjustingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundAdjustingView.swift; sourceTree = "<group>"; };
 		4E67DF7D2DBE81370040F078 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		4E67DF7F2DBE814A0040F078 /* SoundOutputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundOutputManager.swift; sourceTree = "<group>"; };
 		4E67DF812DBE816A0040F078 /* SoundOutputManager+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundOutputManager+Properties.swift"; sourceTree = "<group>"; };
@@ -435,8 +435,8 @@
 		4E67DF772DBE7EA30040F078 /* VoiceAjusting */ = {
 			isa = PBXGroup;
 			children = (
-				4E67DF782DBE7EC30040F078 /* VoiceAjustingViewModel.swift */,
-				4E67DF7A2DBE7ED30040F078 /* VoiceAdjustingView.swift */,
+				4E67DF782DBE7EC30040F078 /* SoundAdjustingViewModel.swift */,
+				4E67DF7A2DBE7ED30040F078 /* SoundAdjustingView.swift */,
 			);
 			path = VoiceAjusting;
 			sourceTree = "<group>";
@@ -594,7 +594,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E1DC4E42DABDD8D003C561A /* CPUProvider.swift in Sources */,
-				4E67DF7B2DBE7ED30040F078 /* VoiceAdjustingView.swift in Sources */,
+				4E67DF7B2DBE7ED30040F078 /* SoundAdjustingView.swift in Sources */,
 				4E2EE30A2DB38BD50057804D /* GoogleChromeScripting.swift in Sources */,
 				4E1DC4FE2DAD6D74003C561A /* Logger.swift in Sources */,
 				4E2EE2EF2DB2928A0057804D /* View+Ext.swift in Sources */,
@@ -616,7 +616,7 @@
 				4E2EE2E82DB155650057804D /* NotchViewModel.swift in Sources */,
 				4E67DF5C2DB41AB30040F078 /* AudioSpectrumView.swift in Sources */,
 				4E2EE2F72DB3546B0057804D /* MusicView.swift in Sources */,
-				4E67DF792DBE7EC30040F078 /* VoiceAjustingViewModel.swift in Sources */,
+				4E67DF792DBE7EC30040F078 /* SoundAdjustingViewModel.swift in Sources */,
 				4E2EE3172DB39FEB0057804D /* String+Ext.swift in Sources */,
 				4E2EE2FC2DB372460057804D /* SpotifyBridge.swift in Sources */,
 				4E2EE3132DB393CA0057804D /* AppleMusic.swift in Sources */,

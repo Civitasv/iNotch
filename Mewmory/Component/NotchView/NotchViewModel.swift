@@ -121,6 +121,9 @@ final class NotchViewModel {
     private var tipPanelHideTimer: Timer?
     var showKeyPanel: Bool = false
     private var keyPanelHideTimer: Timer?
+    
+    var showVolume: Bool = false
+    private var volumeHideTimer: Timer?
 
     var currentSnapShot: NotchSnapShot = NotchSnapShot()
 
@@ -210,6 +213,32 @@ final class NotchViewModel {
                 repeats: false
             ) { [weak self] _ in
                 self?.showTips = false
+                self?.refreshSize()
+            }
+        }
+        
+        registerEvent(name: "SoundAdjustingViewModel.VolumeChange") { [weak self] userInfo in
+            guard let self else { return }
+            guard let userInfo = userInfo else {
+               return
+            }
+
+            guard let volume = userInfo["Volume"] as? Float else {
+               return
+            }
+            Logger.log("Volume: \(volume)", category: .debug)
+            volumeHideTimer?.invalidate()
+
+            if !showVolume {
+                showVolume = true
+                refreshSize()
+            }
+
+            volumeHideTimer = Timer.scheduledTimer(
+                withTimeInterval: 5.0,
+                repeats: false
+            ) { [weak self] _ in
+                self?.showVolume = false
                 self?.refreshSize()
             }
         }
@@ -356,16 +385,16 @@ final class NotchViewModel {
     }
     
     func refreshSize() {
-        let hideDuration = showKeyPanel || showTips ? 0.5 : 0.2
-        let hideBounce = showKeyPanel || showTips ? 0 : 0.1
+        let hideDuration = showKeyPanel || showTips || showVolume ? 0.5 : 0.2
+        let hideBounce = showKeyPanel || showTips || showVolume ? 0 : 0.1
         
-        let lessDuration = showKeyPanel || showTips ? 0.5 : 0.4
-        let lessBounce = showKeyPanel || showTips ? 0 : 0.2
+        let lessDuration = showKeyPanel || showTips || showVolume ? 0.5 : 0.4
+        let lessBounce = showKeyPanel || showTips || showVolume ? 0 : 0.2
 
         switch displayMode {
         case .Hide:
             withAnimation(.spring(duration: hideDuration, bounce: hideBounce)) {
-                notchViewSize = CGSize(width: notchSize.width + (bHovering ? 5 : 0), height: notchSize.height + (bHovering ? 5 : 0) + (showKeyPanel || showTips ? notchSize.height : 0))
+                notchViewSize = CGSize(width: notchSize.width + (bHovering ? 5 : 0) + (showVolume ? 100 : 0), height: notchSize.height + (bHovering ? 5 : 0) + (showKeyPanel || showTips ? notchSize.height : 0))
             }
         case .Less:
             withAnimation(.spring(duration: lessDuration, bounce: lessBounce)) {

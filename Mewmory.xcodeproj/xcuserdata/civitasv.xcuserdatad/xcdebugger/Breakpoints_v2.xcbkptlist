@@ -174,8 +174,8 @@
             filePath = "Mewmory/Component/NotchView/NotchViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "registerEvents()"
             landmarkType = "7">
          </BreakpointContent>

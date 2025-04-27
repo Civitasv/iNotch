@@ -198,6 +198,7 @@ struct ContentView: View {
     @State private var cpuVm = SystemViewModel()
     @State private var musicVm = MusicViewModel()
     @State private var batteryVm = BatteryViewModel()
+    @State private var soundVm = SoundAdjustingViewModel()
     @State private var message = "Swipe right to reveal"
     
     #if DEBUG
@@ -242,13 +243,17 @@ struct ContentView: View {
                     .frame(width: notchVm.notchViewSize.width - 20, height: notchVm.notchViewSize.height)
                 }
                 else {
-                    ZStack(alignment: .top) {
-                        MusicLessLeftView()
-                            .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .leading)
-                        MusicLessRightView()
-                            .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .trailing)
+                    if notchVm.showVolume {
+                        
+                    } else {
+                        ZStack(alignment: .top) {
+                            MusicLessLeftView()
+                                .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .leading)
+                            MusicLessRightView()
+                                .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .trailing)
+                        }
+                        .frame(width: notchVm.notchViewSize.width - 20, height: notchSize.height) // 高度不变，宽度随实际宽度改变而改变
                     }
-                    .frame(width: notchVm.notchViewSize.width - 20, height: notchSize.height) // 高度不变，宽度随实际宽度改变而改变
                 }
             }
             #endif
@@ -275,14 +280,22 @@ struct ContentView: View {
                         .position(x: (notchPanelRect.width) / 2, y: (notchVm.notchViewSize.height + notchSize.height) / 2)
                 }
                 ZStack(alignment: .top) {
-                    if let leftComponent = notchVm.currentSnapShot.leftComponent {
-                        leftComponent.content
+                    if notchVm.showVolume {
+                        SoundLessLeftView()
                             .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .leading)
-                    }
-                    
-                    if let rightComponent = notchVm.currentSnapShot.rightComponent {
-                        rightComponent.content
+                        SoundLessRightView()
                             .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .trailing)
+                    }
+                    else {
+                        if let leftComponent = notchVm.currentSnapShot.leftComponent {
+                            leftComponent.content
+                                .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .leading)
+                        }
+                        
+                        if let rightComponent = notchVm.currentSnapShot.rightComponent {
+                            rightComponent.content
+                                .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .trailing)
+                        }
                     }
                 }
                 .frame(width: notchVm.notchViewSize.width-20, height: notchSize.height) // 高度不变，宽度随实际宽度改变而改变
@@ -291,6 +304,7 @@ struct ContentView: View {
         .environment(keyboardVm)
         .environment(musicVm)
         .environment(notchVm)
+        .environment(soundVm)
         .frame(maxWidth: notchPanelRect.width, maxHeight: notchPanelRect.height, alignment: .top) // 与最大宽度和高度一致
     }
     
