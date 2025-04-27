@@ -11,7 +11,7 @@ protocol TickProtocol {
     func tick(_ params: [AnyHashable : Any]?)
 }
 
-class BasicViewModel: TickProtocol {
+class TickableViewModel: TickProtocol {
     private var lastTick: Date = Date.now
     
     init(tickInterval: TimeInterval) {

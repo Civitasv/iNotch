@@ -195,7 +195,7 @@ struct ContentView: View {
     @State private var notchVm = NotchViewModel()
     
     @State private var keyboardVm = KeyboardViewModel()
-    @State private var cpuVm = CPUViewModel()
+    @State private var cpuVm = SystemViewModel()
     @State private var musicVm = MusicViewModel()
     @State private var batteryVm = BatteryViewModel()
     @State private var message = "Swipe right to reveal"
@@ -305,5 +305,5 @@ struct ContentView: View {
         .environment(NotchViewModel())
         .environment(MusicViewModel())
         .environment(KeyboardViewModel())
-        .environment(CPUViewModel())
+        .environment(SystemViewModel())
 }

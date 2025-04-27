@@ -32,7 +32,7 @@ struct MusicTrack: Equatable {
 // Attention: 通过程序直接获取 nowPlaying 的值是 private api，无法上 apple store: https://stackoverflow.com/a/61494862
 
 @Observable
-final class MusicViewModel: BasicViewModel {
+final class MusicViewModel: TickableViewModel {
     // Observed Variables
     var currentTrack: MusicTrack = MusicTrack()
     var automationPermissionEnabled = false
@@ -40,21 +40,20 @@ final class MusicViewModel: BasicViewModel {
     // Private
     private var prevTitle: String = ""
     private var prevIsPlaying: Bool = false
+    
     private let appleMusic = application(name: "Music") as! AppleMusicApplication
-
-    private let qqMusic = QQMusicApplication()
 
     override init(tickInterval: TimeInterval = 0.2) {
         Logger.log("Init \(appleMusic.mute!) \(appleMusic.name!)", category: .debug)
 
         super.init(tickInterval: tickInterval)
         Task {
-            await self.registerControlAppleMusic()
+            await self.registerControl(name: "Music")
         }
-        // What is Task: https://stackoverflow.com/a/70979280
-        Task {
-            await qqMusic.nextTrack()
-        }
+// What is Task: https://stackoverflow.com/a/70979280
+//        Task {
+//            await qqMusic.nextTrack()
+//        }
     }
 
     public override func tick(_ params: [AnyHashable : Any]?) {
@@ -102,10 +101,10 @@ final class MusicViewModel: BasicViewModel {
 
     // 注意：需要在 target 的 info 设置 NSAppleEventsUsageDescription，根目录里的 info.plist 设置不会生效
     // https://stackoverflow.com/a/52960825
-    private func registerControlAppleMusic() async {
+    private func registerControl(name: String) async {
         Logger.log("Start", category: .debug)
         Task.detached {
-            if let bundleIdentifier = getBundelIdentifier(name: "Music") {
+            if let bundleIdentifier = getBundelIdentifier(name: name) {
                 Logger.log("bundleIdentifier: \(bundleIdentifier)", category: .debug)
                 let targetAEDescriptor = NSAppleEventDescriptor(bundleIdentifier: bundleIdentifier)
                 let status = AEDeterminePermissionToAutomateTarget(targetAEDescriptor.aeDesc, typeWildCard, typeWildCard, true)
