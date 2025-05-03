@@ -1,0 +1,181 @@
+{
+  "sourceLanguage" : "zh-Hans",
+  "strings" : {
+    " + " : {
+
+    },
+    "Battery" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "电量"
+          }
+        }
+      }
+    },
+    "Coming soon" : {
+      "extractionState" : "manual"
+    },
+    "Feature Request" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "功能请求"
+          }
+        }
+      }
+    },
+    "HighCpuWarning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠️ High Cpu Usage"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠️ CPU占用过高"
+          }
+        }
+      }
+    },
+    "HighMemoryWarning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠️ High Memory Usage"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠️ 内存占用过高"
+          }
+        }
+      }
+    },
+    "iNotch" : {
+
+    },
+    "Language" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "语言"
+          }
+        }
+      }
+    },
+    "LowBattery" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠️ Low Battery"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠️ 电量过低"
+          }
+        }
+      }
+    },
+    "muted" : {
+
+    },
+    "NormalCpu" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "✅ Back to Normal(CPU)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "✅ CPU占用恢复正常"
+          }
+        }
+      }
+    },
+    "NormalMemory" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "✅ Back to Normal(Mem)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "✅ 内存占用恢复正常"
+          }
+        }
+      }
+    },
+    "Open AppleMusic" : {
+
+    },
+    "Quit" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Show Current Pressed Key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当前按键"
+          }
+        }
+      }
+    },
+    "Sound Volume Change" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音量变化"
+          }
+        }
+      }
+    },
+    "System Usage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "系统资源使用"
+          }
+        }
+      }
+    },
+    "unmuted" : {
+
+    }
+  },
+  "version" : "1.0"
+}

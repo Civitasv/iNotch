@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4E1DC4B22DABDAAB003C561A"
-               BuildableName = "Mewmory.app"
-               BlueprintName = "Mewmory"
+               BuildableName = "iNotch.app"
+               BlueprintName = "iNotch"
                ReferencedContainer = "container:Mewmory.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -35,8 +35,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4E1DC4C32DABDAAD003C561A"
-               BuildableName = "MewmoryTests.xctest"
-               BlueprintName = "MewmoryTests"
+               BuildableName = "iNotchTests.xctest"
+               BlueprintName = "iNotchTests"
                ReferencedContainer = "container:Mewmory.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -46,8 +46,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4E1DC4CD2DABDAAD003C561A"
-               BuildableName = "MewmoryUITests.xctest"
-               BlueprintName = "MewmoryUITests"
+               BuildableName = "iNotchUITests.xctest"
+               BlueprintName = "iNotchUITests"
                ReferencedContainer = "container:Mewmory.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -57,6 +57,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = "zh-Hans"
+      region = "CN"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -68,8 +70,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4E1DC4B22DABDAAB003C561A"
-            BuildableName = "Mewmory.app"
-            BlueprintName = "Mewmory"
+            BuildableName = "iNotch.app"
+            BlueprintName = "iNotch"
             ReferencedContainer = "container:Mewmory.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -85,8 +87,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4E1DC4B22DABDAAB003C561A"
-            BuildableName = "Mewmory.app"
-            BlueprintName = "Mewmory"
+            BuildableName = "iNotch.app"
+            BlueprintName = "iNotch"
             ReferencedContainer = "container:Mewmory.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
