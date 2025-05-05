@@ -2,7 +2,7 @@
 //  BatteryViewModel.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/16.
+//  Created by Civitasv on 2025/4/16.
 //
 
 import Foundation
@@ -25,7 +25,7 @@ final class BatteryViewModel {
         self.updateBatteryStatus()
         self.startMonitoring()
     }
-    
+
     deinit {
         if let runLoopSource = runLoopSource {
             CFRunLoopRemoveSource(CFRunLoopGetCurrent(), runLoopSource.takeUnretainedValue(), .defaultMode)
@@ -36,11 +36,11 @@ final class BatteryViewModel {
     public func isLowPowerMode() -> Bool {
         return percentage <= 40
     }
-    
+
     public func isDangerousPowerMode() -> Bool {
         return percentage <= 20
     }
-    
+
     private func updateBatteryStatus() {
         if let snapshot = IOPSCopyPowerSourcesInfo()?.takeRetainedValue(),
            let sources = IOPSCopyPowerSourcesList(snapshot)?.takeRetainedValue() as? [CFTypeRef] {
@@ -60,7 +60,7 @@ final class BatteryViewModel {
                     withAnimation {
                         self.bCharging = bCharging || isACPower
                     }
-                    
+
                     if isLowPowerMode() && !lowPowerTipsShown {
                         postEvent(name: "NotchViewModel.ShowTips", params: ["Tips": "LowBattery"])
                         lowPowerTipsShown = true
@@ -69,7 +69,7 @@ final class BatteryViewModel {
             }
         }
     }
-    
+
     private func startMonitoring() {
         let context = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
 

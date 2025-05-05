@@ -2,7 +2,7 @@
 //  VoiceAdjustingView.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/27.
+//  Created by Civitasv on 2025/4/27.
 //
 
 import SwiftUI
@@ -27,9 +27,9 @@ struct BrightnessRightView: View {
 
     @State private var sliderValue: Double = 0
     @State private var dragging: Bool = false
-    
+
     private var notchSize = getClosedNotchSize()
-    
+
     var body: some View {
         CustomSlider(
             value: $sliderValue,

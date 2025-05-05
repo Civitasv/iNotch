@@ -2,7 +2,7 @@
 //  QQMusicApplication.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/26.
+//  Created by Civitasv on 2025/4/26.
 //
 
 import Foundation
@@ -10,11 +10,11 @@ import Carbon
 
 class QQMusicApplication {
     var isRunning: Bool = false
-    
+
     var nextTrackScript: NSAppleScript?
     var prevTrackScript: NSAppleScript?
     var playpauseScript: NSAppleScript?
-    
+
     func nextTrack() async {
         if self.nextTrackScript == nil {
             self.nextTrackScript = {
@@ -32,12 +32,12 @@ class QQMusicApplication {
         guard let nextTrackScript = self.nextTrackScript else { return }
         var possibleError: NSDictionary? = nil
         nextTrackScript.executeAndReturnError(&possibleError)
-        
+
         if let error = possibleError {
             Logger.log("ERROR: \(error)", category: .debug)
         }
     }
-    
+
     func prevTrack() async {
         if self.prevTrackScript == nil {
             self.prevTrackScript = {
@@ -55,12 +55,12 @@ class QQMusicApplication {
         guard let prevTrackScript = self.prevTrackScript else { return }
         var possibleError: NSDictionary? = nil
         prevTrackScript.executeAndReturnError(&possibleError)
-        
+
         if let error = possibleError {
             Logger.log("ERROR: \(error)", category: .debug)
         }
     }
-    
+
     func playPause() async {
         if self.playpauseScript == nil {
             self.playpauseScript = {
@@ -78,7 +78,7 @@ class QQMusicApplication {
         guard let playpauseScript = self.playpauseScript else { return }
         var possibleError: NSDictionary? = nil
         playpauseScript.executeAndReturnError(&possibleError)
-        
+
         if let error = possibleError {
             Logger.log("ERROR: \(error)", category: .debug)
         }

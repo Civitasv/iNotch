@@ -2,7 +2,7 @@
 //  Sound.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/27.
+//  Created by Civitasv on 2025/4/27.
 //
 
 import Foundation

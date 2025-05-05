@@ -2,7 +2,7 @@
 //  View+CornerRadius.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/18.
+//  Created by Civitasv on 2025/4/18.
 //
 
 import SwiftUI
@@ -38,7 +38,7 @@ struct RoundedCornersShape: Shape {
         let p7 = CGPoint(x: corners.contains(.bottomLeft) ? rect.minX + radius : rect.minX, y: rect.maxY )
         let p8 = CGPoint(x: rect.minX, y: corners.contains(.bottomLeft) ? rect.maxY - radius : rect.maxY )
 
-        
+
         path.move(to: p1)
         path.addArc(tangent1End: CGPoint(x: rect.minX, y: rect.minY),
                     tangent2End: p2,
@@ -73,12 +73,12 @@ struct ScrollWheelModifier: ViewModifier {
     @State private var subs = Set<AnyCancellable>() // Cancel onDisappear
 
     var action: (CGFloat, CGFloat) -> Void
-    
+
     func body(content: Content) -> some View {
         content
             .onAppear { trackScrollWheel() }
     }
-    
+
     func trackScrollWheel() {
         NSApp.publisher(for: \.currentEvent)
             .filter { event in event?.type == .scrollWheel }

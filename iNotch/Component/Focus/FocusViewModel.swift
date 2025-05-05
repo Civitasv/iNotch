@@ -2,7 +2,7 @@
 //  FocusViewModel.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/28.
+//  Created by Civitasv on 2025/4/28.
 //
 
 import Foundation
@@ -12,6 +12,6 @@ import Intents
 @Observable
 final class FocusViewModel {
     init() {
-        
+
     }
 }

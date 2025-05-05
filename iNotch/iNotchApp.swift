@@ -2,7 +2,7 @@
 //  iNotchApp.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/13.
+//  Created by Civitasv on 2025/4/13.
 //
 
 import AVFoundation
@@ -15,13 +15,13 @@ struct iNotchApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.openWindow) var openWindow
-    
+
     var body: some Scene {
         Window("iNotch", id: "iNotch") {
             NotchView()
         }
         .windowStyle(.hiddenTitleBar)
-        
+
         MenuBarExtra("iNotch", systemImage: "arrow.trianglehead.counterclockwise") {
             Button("Settings") {
                 openWindow(id: "iNotch") // 通过 id 打开对应窗口
@@ -34,11 +34,11 @@ struct iNotchApp: App {
         }
         .menuBarExtraStyle(.window)
     }
-    
+
     init() {
         Logger.log("iNotch Init", category: .ui)
     }
-    
+
     public func setData() -> Int {
         return 0
     }

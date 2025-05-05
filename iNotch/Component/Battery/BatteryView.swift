@@ -2,7 +2,7 @@
 //  BoringBattery.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/16.
+//  Created by Civitasv on 2025/4/16.
 //
 
 import SwiftUI
@@ -14,7 +14,7 @@ struct BatteryIcon: View {
     var icon: String {
         return "battery.0"
     }
-    
+
     var batteryColor: Color {
         if batteryVm.isLowPowerMode() {
             return .yellow
@@ -26,7 +26,7 @@ struct BatteryIcon: View {
             return .white
         }
     }
-    
+
     var body: some View {
         ZStack(alignment: .leading) {
             Image(systemName: icon)
@@ -37,7 +37,7 @@ struct BatteryIcon: View {
                 .frame(
                     width: batteryWidth + 1
                 )
-            
+
             RoundedRectangle(cornerRadius: 2.5)
                 .fill(batteryColor)
                 .frame(width: CGFloat(((CGFloat(CFloat(batteryVm.percentage)) / 100) * (batteryWidth - 6))),
@@ -59,7 +59,7 @@ struct BatteryIcon: View {
 
 struct BatteryView: View {
     @State var batteryVm = BatteryViewModel()
-    
+
     var body: some View {
         HStack {
             BatteryIcon(batteryVm: batteryVm, batteryWidth: 30)

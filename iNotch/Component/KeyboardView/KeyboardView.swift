@@ -2,7 +2,7 @@
 //  KeyboardView.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/15.
+//  Created by Civitasv on 2025/4/15.
 //
 
 import SwiftUI
@@ -10,7 +10,7 @@ import SwiftUI
 struct KeyboardView: View {
     @Environment(KeyboardViewModel.self) private var keyboardVm
     @Environment(NotchViewModel.self) private var notchVm
-    
+
     private var notchSize = getClosedNotchSize()
     var body: some View {
         Key(width: 100, height: notchSize.height, key: keyboardVm.keyString, modifier: keyboardVm.modifierString)
@@ -23,7 +23,7 @@ struct Key: View {
     var height: CGFloat
     var key: String
     var modifier: String
-    
+
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
             if !modifier.isEmpty {
@@ -32,7 +32,7 @@ struct Key: View {
                 Text(" + ")
                     .foregroundStyle(.red)
             }
-            
+
             Text(key)
                 .foregroundStyle(.white)
         }

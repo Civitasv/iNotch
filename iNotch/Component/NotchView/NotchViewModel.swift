@@ -2,7 +2,7 @@
 //  NotchViewModel.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/17.
+//  Created by Civitasv on 2025/4/17.
 //
 
 import Foundation
@@ -28,7 +28,7 @@ struct NotchApp: Identifiable, Equatable {
     let leftComponent: NotchComponent?
     let rightComponent: NotchComponent?
     let fullComponent: NotchComponent?
-    
+
     static func == (lhs: NotchApp, rhs: NotchApp) -> Bool {
         return lhs.id == rhs.id
     }
@@ -44,7 +44,7 @@ struct NotchTip: Identifiable, Equatable {
     let rightComponent: NotchComponent?
     let fullComponent: NotchComponent?
     let duration: Double
-    
+
     static func == (lhs: NotchTip, rhs: NotchTip) -> Bool {
         return lhs.id == rhs.id
     }
@@ -64,7 +64,7 @@ struct NotchComponent: Identifiable, Equatable {
        self.tipType = nil
        self.content = AnyView(content())
    }
-    
+
     init<Content: View>(
         tipType: NotchTipType,
         @ViewBuilder content: () -> Content
@@ -73,7 +73,7 @@ struct NotchComponent: Identifiable, Equatable {
        self.tipType = tipType
        self.content = AnyView(content())
    }
-    
+
     static func == (lhs: NotchComponent, rhs: NotchComponent) -> Bool {
         return lhs.id == rhs.id
     }
@@ -121,7 +121,7 @@ final class NotchViewModel {
     private var tipPanelHideTimer: Timer?
     var showKeyPanel: Bool = false
     private var keyPanelHideTimer: Timer?
-    
+
     var showVolume: Bool = false
     private var volumeHideTimer: Timer?
 
@@ -133,11 +133,11 @@ final class NotchViewModel {
 
     private let timer = Timer.publish(every: 0.2, on: .main, in: .common).autoconnect()
     private var cancellables = Set<AnyCancellable>()
-    
+
     init() {
         registerEvents()
     }
-    
+
     func registerEvents() {
         Logger.log("RegisterEvents", category: .debug)
         timer.receive(on: DispatchQueue.main)
@@ -145,7 +145,7 @@ final class NotchViewModel {
                 postEvent(name: "iNotchApp.Tick", params: nil)
             }
             .store(in: &cancellables)
-        
+
         registerEvent(name: "MusicViewModel.CurrentTrack.IsPlaying") { [weak self] userInfo in
             guard let self else { return }
             guard let userInfo = userInfo else {
@@ -160,7 +160,7 @@ final class NotchViewModel {
                 addApp(musicApp)
             }
         }
-        
+
         registerEvent(name: "KeyboardViewModel.IsPressKey") { [weak self] userInfo in
             guard let self else { return }
             guard let userInfo = userInfo else {
@@ -189,7 +189,7 @@ final class NotchViewModel {
                 }
             }
         }
-        
+
         registerEvent(name: "NotchViewModel.ShowTips") { [weak self] userInfo in
             guard let self else { return }
             guard let userInfo = userInfo else {
@@ -216,7 +216,7 @@ final class NotchViewModel {
                 self?.refreshSize()
             }
         }
-        
+
         registerEvent(name: "SoundAdjustingViewModel.VolumeChange") { [weak self] userInfo in
             guard let self else { return }
             guard let userInfo = userInfo else {
@@ -242,7 +242,7 @@ final class NotchViewModel {
                 self?.refreshSize()
             }
         }
-        
+
         // Defaults key change
         Task {
             for await value in Defaults.updates(.featureMusic) {
@@ -252,7 +252,7 @@ final class NotchViewModel {
             }
         }
     }
-    
+
     func isHoveringOnNotch() -> Bool {
         let position: NSPoint = NSEvent.mouseLocation
         if let screen = NSScreen.main {
@@ -262,7 +262,7 @@ final class NotchViewModel {
         }
         return false
     }
-    
+
     func addApp(_ app: NotchApp) {
         if let leftComponent = app.leftComponent {
             if currentSnapShot.leftComponent == nil {
@@ -278,7 +278,7 @@ final class NotchViewModel {
             addToFullSlot(component: fullComponent)
         }
     }
-    
+
     func removeMusicApp() {
         guard let leftComponent = currentSnapShot.leftComponent else { return }
         guard let rightComponent = currentSnapShot.rightComponent else { return }
@@ -289,13 +289,13 @@ final class NotchViewModel {
             currentSnapShot.fullComponent = nil
         }
     }
-    
+
     func addTip(_ tip: NotchTip) {
         if let leftComponent = tip.leftComponent {
             // tip 的左 component 存在的话，无论如何都要占用
             addToLeftSlot(component: leftComponent)
         }
-        
+
         if let rightComponent = tip.rightComponent {
             // tip 的右 component 存在的话，无论如何都要占用
             addToRightSlot(component: rightComponent)
@@ -304,19 +304,19 @@ final class NotchViewModel {
             addToFullSlot(component: fullComponent)
         }
     }
-    
+
     private func addToLeftSlot(component: NotchComponent) {
         currentSnapShot.leftComponent = component
     }
-    
+
     private func addToRightSlot(component: NotchComponent) {
         currentSnapShot.rightComponent = component
     }
-    
+
     private func addToFullSlot(component: NotchComponent) {
         currentSnapShot.fullComponent = component
     }
-    
+
     // 导航的只可能是 app，tip存在时不允许滑动
     func navigate(isForward: Bool) {
         if isForward {
@@ -342,8 +342,8 @@ final class NotchViewModel {
             }
         }
     }
-    
-    
+
+
     enum Direction {
         case None, Up, Down, Left, Right
     }
@@ -362,7 +362,7 @@ final class NotchViewModel {
             }
         }
     }
-    
+
     func shrinkOrExpand(deltaX: CGFloat, deltaY: CGFloat) {
         var direction: Direction = .None
         if displayMode == .Hide && deltaY > 3 {
@@ -379,7 +379,7 @@ final class NotchViewModel {
         }
         shrinkOrExpand(direction: direction)
     }
-    
+
     func shrinkOrExpand(direction: Direction) {
         var newDisplayMode: NotchDisplayMode = displayMode
         if direction == .Up {
@@ -403,11 +403,11 @@ final class NotchViewModel {
             self.refreshSize()
         }
     }
-    
+
     func refreshSize() {
         let hideDuration = showKeyPanel || showTips || showVolume ? 0.5 : 0.2
         let hideBounce = showKeyPanel || showTips || showVolume ? 0 : 0.1
-        
+
         let lessDuration = showKeyPanel || showTips || showVolume ? 0.5 : 0.4
         let lessBounce = showKeyPanel || showTips || showVolume ? 0 : 0.2
 

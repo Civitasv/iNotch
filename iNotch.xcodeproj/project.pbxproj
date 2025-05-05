@@ -19,14 +19,12 @@
 		4E1DC4EC2DAC197F003C561A /* Battery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4EB2DAC197F003C561A /* Battery.swift */; };
 		4E1DC4F12DAC314C003C561A /* SystemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4F02DAC314C003C561A /* SystemViewModel.swift */; };
 		4E1DC4F42DAD6AD3003C561A /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4F32DAD6AD3003C561A /* NotchShape.swift */; };
-		4E1DC4FB2DAD6CB7003C561A /* HelloAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4FA2DAD6CB7003C561A /* HelloAnimation.swift */; };
 		4E1DC4FE2DAD6D74003C561A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DC4FD2DAD6D74003C561A /* Logger.swift */; };
 		4E2EE2D02DAEAD350057804D /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2CF2DAEAD350057804D /* KeyboardView.swift */; };
 		4E2EE2D22DAEAD870057804D /* KeyboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2D12DAEAD870057804D /* KeyboardViewModel.swift */; };
 		4E2EE2D72DAFC8010057804D /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2D62DAFC8010057804D /* NotchView.swift */; };
 		4E2EE2E02DAFD0570057804D /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2DF2DAFD0570057804D /* BatteryView.swift */; };
 		4E2EE2E22DAFD0A90057804D /* BatteryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2E12DAFD0A90057804D /* BatteryViewModel.swift */; };
-		4E2EE2E42DAFD4EC0057804D /* InlineHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2E32DAFD4EC0057804D /* InlineHud.swift */; };
 		4E2EE2E82DB155650057804D /* NotchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2E72DB155650057804D /* NotchViewModel.swift */; };
 		4E2EE2EA2DB156970057804D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2E92DB156970057804D /* Constant.swift */; };
 		4E2EE2EC2DB158500057804D /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2EE2EB2DB158500057804D /* Helper.swift */; };
@@ -97,14 +95,12 @@
 		4E1DC4EB2DAC197F003C561A /* Battery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Battery.swift; sourceTree = "<group>"; };
 		4E1DC4F02DAC314C003C561A /* SystemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemViewModel.swift; sourceTree = "<group>"; };
 		4E1DC4F32DAD6AD3003C561A /* NotchShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchShape.swift; sourceTree = "<group>"; };
-		4E1DC4FA2DAD6CB7003C561A /* HelloAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloAnimation.swift; sourceTree = "<group>"; };
 		4E1DC4FD2DAD6D74003C561A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		4E2EE2CF2DAEAD350057804D /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		4E2EE2D12DAEAD870057804D /* KeyboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewModel.swift; sourceTree = "<group>"; };
 		4E2EE2D62DAFC8010057804D /* NotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
 		4E2EE2DF2DAFD0570057804D /* BatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
 		4E2EE2E12DAFD0A90057804D /* BatteryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryViewModel.swift; sourceTree = "<group>"; };
-		4E2EE2E32DAFD4EC0057804D /* InlineHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineHud.swift; sourceTree = "<group>"; };
 		4E2EE2E72DB155650057804D /* NotchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewModel.swift; sourceTree = "<group>"; };
 		4E2EE2E92DB156970057804D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4E2EE2EB2DB158500057804D /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -200,7 +196,6 @@
 				4E2EE2ED2DB292710057804D /* Extension */,
 				4E2EE2CD2DAEAB210057804D /* Component */,
 				4E1DC4FC2DAD6D68003C561A /* Common */,
-				4E1DC4F92DAD6CAB003C561A /* Animation */,
 				4E1DC4E82DAC191B003C561A /* SystemKit */,
 				4E1DC4E72DAC0CC6003C561A /* Provider */,
 				4E1DC4B62DABDAAB003C561A /* iNotchApp.swift */,
@@ -254,14 +249,6 @@
 			path = SystemKit;
 			sourceTree = "<group>";
 		};
-		4E1DC4F92DAD6CAB003C561A /* Animation */ = {
-			isa = PBXGroup;
-			children = (
-				4E1DC4FA2DAD6CB7003C561A /* HelloAnimation.swift */,
-			);
-			path = Animation;
-			sourceTree = "<group>";
-		};
 		4E1DC4FC2DAD6D68003C561A /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,7 +269,6 @@
 				4E2EE3002DB389B10057804D /* GoogleChrome */,
 				4E2EE2F52DB354520057804D /* Music */,
 				4E2EE2F32DB353840057804D /* SystemView */,
-				4E2EE2F22DB353710057804D /* Hud */,
 				4E2EE2DE2DAFD0400057804D /* Battery */,
 				4E2EE2D52DAFC7D20057804D /* NotchView */,
 				4E2EE2CE2DAEAD0F0057804D /* KeyboardView */,
@@ -327,14 +313,6 @@
 				4E67DF5F2DB4DC720040F078 /* ProcessInfo+Ext.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		4E2EE2F22DB353710057804D /* Hud */ = {
-			isa = PBXGroup;
-			children = (
-				4E2EE2E32DAFD4EC0057804D /* InlineHud.swift */,
-			);
-			path = Hud;
 			sourceTree = "<group>";
 		};
 		4E2EE2F32DB353840057804D /* SystemView */ = {
@@ -663,7 +641,6 @@
 				4E2EE3132DB393CA0057804D /* AppleMusic.swift in Sources */,
 				4E67DF602DB4DC720040F078 /* ProcessInfo+Ext.swift in Sources */,
 				4E2EE2FE2DB3838D0057804D /* ScriptingUtility.swift in Sources */,
-				4E1DC4FB2DAD6CB7003C561A /* HelloAnimation.swift in Sources */,
 				4E67DF6A2DBCDF400040F078 /* TickProtocol.swift in Sources */,
 				4E1DC4F42DAD6AD3003C561A /* NotchShape.swift in Sources */,
 				4E67DF822DBE816A0040F078 /* SoundOutputManager+Properties.swift in Sources */,
@@ -673,7 +650,6 @@
 				4E67DF7E2DBE81370040F078 /* Sound.swift in Sources */,
 				4E2EE2D22DAEAD870057804D /* KeyboardViewModel.swift in Sources */,
 				4E2EE3122DB393CA0057804D /* AppleMusicScripting.swift in Sources */,
-				4E2EE2E42DAFD4EC0057804D /* InlineHud.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

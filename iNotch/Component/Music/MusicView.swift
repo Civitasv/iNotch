@@ -2,7 +2,7 @@
 //  MusicView.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/19.
+//  Created by Civitasv on 2025/4/19.
 //
 
 import SwiftUI
@@ -57,7 +57,7 @@ struct MusicLessRightView: View {
 
 struct MusicMoreView: View {
     @Environment(MusicViewModel.self) var musicVm
-    
+
     var body: some View {
         ZStack(alignment: .topTrailing) {
             Menu {
@@ -74,7 +74,7 @@ struct MusicMoreView: View {
             .menuStyle(.borderlessButton)
             .frame(width: 25, height: 20)
             .padding()
-            
+
             HStack {
                 ZStack(alignment: .center) {
                     if let coverImage = musicVm.currentTrack.artwork {
@@ -84,9 +84,9 @@ struct MusicMoreView: View {
                         CoverImageView(image: Image("IconSettings"), album: musicVm.currentTrack.album)
                     }
                 }
-                
+
                 Spacer()
-                
+
                 VStack {
                     Spacer()
                     Text(musicVm.currentTrack.title)
@@ -133,7 +133,7 @@ struct MusicSliderView: View {
 
     @State private var sliderValue: Double = 0
     @State private var dragging: Bool = false
-    
+
     var onValueChange: (Double) -> Void
 
     var body: some View {
@@ -216,12 +216,12 @@ private struct HoverButton: View {
     var scale: Image.Scale = .medium
     var action: () -> Void
     var contentTransition: ContentTransition = .symbolEffect;
-    
+
     @State private var isHovering = false
 
     var body: some View {
         let size = CGFloat(scale == .large ? 40 : 30)
-        
+
         Button(action: action) {
             Rectangle()
                 .fill(.clear)
@@ -251,10 +251,10 @@ private struct HoverButton: View {
 
 private struct CoverImageView: View {
     @State private var shouldShowAlbumName = false
-    
+
     let image: Image
     let album: String?
-    
+
     var body: some View {
         ZStack {
             image
@@ -274,7 +274,7 @@ private struct CoverImageView: View {
                 .aspectRatio(contentMode: .fit)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .opacity(shouldShowAlbumName ? 0.3 : 1)
-            
+
             if let album = album {
                 Text(album)
                     .padding()

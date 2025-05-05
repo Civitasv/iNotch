@@ -12,4 +12,5 @@ Currently, its main function is to show what you are typing on the notch space. 
 - [Setting](https://github.com/aheze/Setting) for easily creating settings panel
 - [SystemKit](https://github.com/gao-sun/SystemKit) for easily getting system info
 - [boring.notch](https://github.com/TheBoredTeam/boring.notch/) for some notch related reference
+- [Sound](https://github.com/InerziaSoft/ISSoundAdditions) for system volume info
 - and more ... Plz Reach me if I forget to credit your work, thanks!

@@ -2,7 +2,7 @@
 //  KeyboardViewModel.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/15.
+//  Created by Civitasv on 2025/4/15.
 //
 
 import Foundation
@@ -14,7 +14,7 @@ final class KeyboardViewModel {
     var keyString: String = "W"
     var keyCode: Int = 0
     var modifierFlags: NSEvent.ModifierFlags?
-    
+
     var modifierString: String {
         var result = ""
         guard let modifierFlags = modifierFlags else { return result }
@@ -32,7 +32,7 @@ final class KeyboardViewModel {
         }
         return result
     }
-    
+
     var isTrusted: Bool = AXIsProcessTrusted() // 是否允许访问当前点击的按键
     private var monitor: Any?
     private var specialKeys: [UInt16:String] = [
@@ -102,23 +102,23 @@ final class KeyboardViewModel {
 //            Logger.log("iNotchApp Keydown: \(event.keyCode)", category: .debug)
             guard let self else { return }
             modifierFlags = event.modifierFlags
-            
+
             if let special = specialKeys[event.keyCode] {
                 keyString = special
             }
             else {
                 guard let charactersIgnoringModifiers = event.charactersIgnoringModifiers else { return }
-                
+
                 keyString = charactersIgnoringModifiers
             }
             postEvent(name: "KeyboardViewModel.IsPressKey", params: ["IsPressKey": true])
         }
-        
+
         NSEvent.addGlobalMonitorForEvents(matching: .keyUp) { event in
             postEvent(name: "KeyboardViewModel.IsPressKey", params: ["IsPressKey": false])
         }
     }
-    
+
     /// 权限申请
     private func acquireAccessibilityPrivileges() {
         Logger.log("PermissionsGetter.acquireAccessibilityPrivileges", category: .debug)

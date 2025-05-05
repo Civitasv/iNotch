@@ -2,7 +2,7 @@
 //  ProcessInfo+Ext.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/20.
+//  Created by Civitasv on 2025/4/20.
 //
 
 import Foundation

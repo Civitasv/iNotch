@@ -2,7 +2,7 @@
 //  NotchView.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/16.
+//  Created by Civitasv on 2025/4/16.
 //
 
 import SwiftUI
@@ -12,7 +12,7 @@ import Foundation
 private struct NotchPanelKey: EnvironmentKey {
     static let defaultValue: NSPanel? = nil
 }
- 
+
 extension EnvironmentValues { /// Search notchPanel in Environment
   var notchPanel: NSPanel? {
     get { self[NotchPanelKey.self] }
@@ -30,44 +30,44 @@ class NotchPanel<Content: View>: NSPanel {
     ) {
         /// Initialize the binding variable by assigning the whole value via an underscore
         self._bPresented = bPresented
-     
+
         /// Init the window as usual
         super.init(contentRect: contentRect,
                    styleMask: [.nonactivatingPanel, .borderless, .utilityWindow, .hudWindow],
                    backing: backing,
                    defer: flag)
-     
+
         /// Allow the panel to be on top of other windows
         isFloatingPanel = true
         level = .mainMenu + 3
         isOpaque = false
-     
+
         /// Allow the pannel to be overlaid in a fullscreen space
         collectionBehavior.insert(.fullScreenAuxiliary)
         collectionBehavior.insert(.stationary)
         collectionBehavior.insert(.canJoinAllSpaces)
         collectionBehavior.insert(.ignoresCycle)
-     
+
         /// Don't show a window title, even if it's set
         titleVisibility = .hidden
         titlebarAppearsTransparent = true
         isReleasedWhenClosed = false
         backgroundColor = .clear
-     
+
         /// It stays on the top
         isMovable = false
-     
+
         /// Hide all traffic light buttons
         standardWindowButton(.closeButton)?.isHidden = true
         standardWindowButton(.miniaturizeButton)?.isHidden = true
         standardWindowButton(.zoomButton)?.isHidden = true
-     
+
         /// Sets animations accordingly
         animationBehavior = .utilityWindow
-        
+
         /// No shadow
         hasShadow = false
-     
+
         /// Set the content view.
         /// The safe area is ignored because the title bar still interferes with the geometry
         contentView = NSHostingView(rootView: view() /// view lives inside NotchPanel
@@ -80,7 +80,7 @@ class NotchPanel<Content: View>: NSPanel {
         super.resignMain()
         close()
     }
-     
+
     /// Close and toggle presentation, so that it matches the current state of the panel
     override func close() {
         super.close()
@@ -90,7 +90,7 @@ class NotchPanel<Content: View>: NSPanel {
     override var canBecomeKey: Bool {
         return false
     }
-     
+
     override var canBecomeMain: Bool {
         return false
     }
@@ -100,16 +100,16 @@ class NotchPanel<Content: View>: NSPanel {
 fileprivate struct NotchPanelModifier<PanelContent: View>: ViewModifier {
     /// Determines wheter the panel should be presented or not
     @Binding var bPresented: Bool
- 
+
     /// Determines the starting size of the panel
     var contentRect: CGRect = CGRect(x: 0, y: 0, width: 610, height: 200)
- 
+
     /// Holds the panel content's view closure
     @ViewBuilder let view: () -> PanelContent
- 
+
     /// Stores the panel instance with the same generic type as the view closure
     @State var panel: NotchPanel<PanelContent>?
- 
+
     func body(content: Content) -> some View {
         content
             .onAppear {
@@ -132,7 +132,7 @@ fileprivate struct NotchPanelModifier<PanelContent: View>: ViewModifier {
                 }
             }
     }
- 
+
     /// Present the panel and make it the key window
     func present() {
         panel?.alphaValue = 0
@@ -180,7 +180,7 @@ struct NotchView: View {
     @State private var notchPanelRect: CGRect = CGRect(x: 0, y: 0, width: 610, height: 200)
 
     @State var bPresented = true
-    
+
 
     var body: some View {
         SettingView()
@@ -193,21 +193,21 @@ struct NotchView: View {
 // The View Inside Notch
 struct ContentView: View {
     @State private var notchVm = NotchViewModel()
-    
+
     @State private var keyboardVm = KeyboardViewModel()
     @State private var cpuVm = SystemViewModel()
     @State private var musicVm = MusicViewModel()
     @State private var batteryVm = BatteryViewModel()
     @State private var soundVm = SoundAdjustingViewModel()
     @State private var message = "Swipe right to reveal"
-    
+
     #if DEBUG
     @Default(.showGM) var showGM
     #endif
-    
+
     var notchPanelRect: CGRect
     private var notchSize = getClosedNotchSize()
-    
+
     var body: some View {
         ZStack(alignment: .top) {
             NotchShape()
@@ -229,7 +229,7 @@ struct ContentView: View {
                     }
                     Logger.log("Hovering End: \(notchVm.bHovering)", category: .ui)
                 })
-            
+
             #if DEBUG
             if ProcessInfo.processInfo.isSwiftUIPreview {
                 if notchVm.displayMode == .More {
@@ -244,7 +244,7 @@ struct ContentView: View {
                 }
                 else {
                     if notchVm.showVolume {
-                        
+
                     } else {
                         ZStack(alignment: .top) {
                             MusicLessLeftView()
@@ -291,7 +291,7 @@ struct ContentView: View {
                             leftComponent.content
                                 .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .leading)
                         }
-                        
+
                         if let rightComponent = notchVm.currentSnapShot.rightComponent {
                             rightComponent.content
                                 .frame(maxWidth: .infinity, maxHeight: notchSize.height, alignment: .trailing)
@@ -308,7 +308,7 @@ struct ContentView: View {
         .environment(soundVm)
         .frame(maxWidth: notchPanelRect.width, maxHeight: notchPanelRect.height, alignment: .top) // 与最大宽度和高度一致
     }
-    
+
     init(notchPanelRect: CGRect) {
         self.notchPanelRect = notchPanelRect
     }

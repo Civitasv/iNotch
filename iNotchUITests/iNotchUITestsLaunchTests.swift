@@ -2,7 +2,7 @@
 //  iNotchUITestsLaunchTests.swift
 //  iNotchUITestsLaunchTests
 //
-//  Created by 胡森 on 2025/4/13.
+//  Created by Civitasv on 2025/4/13.
 //
 
 import XCTest

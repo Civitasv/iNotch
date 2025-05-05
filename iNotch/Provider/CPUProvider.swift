@@ -2,7 +2,7 @@
 //  CPUMonitor.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/13.
+//  Created by Civitasv on 2025/4/13.
 //
 
 import Foundation
@@ -14,7 +14,7 @@ final class CPUProvider {
 
     public static func getCPUUsage() -> Double {
         var usage = system.usageCPU()
-        
+
         return usage.system + usage.user
     }
 }

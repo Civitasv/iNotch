@@ -2,7 +2,7 @@
 //  Helper.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/17.
+//  Created by Civitasv on 2025/4/17.
 //
 
 import Foundation

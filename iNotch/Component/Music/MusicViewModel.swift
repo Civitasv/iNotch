@@ -2,7 +2,7 @@
 //  MusicViewModel.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/19.
+//  Created by Civitasv on 2025/4/19.
 //
 
 import Foundation
@@ -41,7 +41,7 @@ final class MusicViewModel: TickableViewModel {
     // Private
     private var prevTitle: String = ""
     private var prevIsPlaying: Bool = false
-    
+
     private let appleMusic = application(name: "Music") as! AppleMusicApplication
 
     override init(tickInterval: TimeInterval = 0.2) {
@@ -51,7 +51,7 @@ final class MusicViewModel: TickableViewModel {
         Task {
             await self.registerControl(name: "Music")
         }
-        
+
         Task {
             for await value in Defaults.updates(.featureMusic) {
                 if value {
@@ -71,7 +71,7 @@ final class MusicViewModel: TickableViewModel {
         }
         refreshMusicInfo()
     }
-    
+
     deinit {
     }
 
@@ -158,7 +158,7 @@ final class MusicViewModel: TickableViewModel {
     func openAutomationSettings() {
         NSWorkspace.shared.open("x-apple.systempreferences:com.apple.preference.security?Privacy_Automation".asURL!)
     }
-    
+
     // --------------------------- coverImage color --------------------------------
     func updateAvgColor() {
         if let currentTrackImage = currentTrack.artwork {
@@ -191,7 +191,7 @@ final class MusicViewModel: TickableViewModel {
     func playPause() {
         appleMusic.playpause?()
     }
-    
+
     func prevTrack() {
         appleMusic.previousTrack?()
     }
@@ -199,7 +199,7 @@ final class MusicViewModel: TickableViewModel {
     func nextTrack() {
         appleMusic.nextTrack?()
     }
-    
+
     func seek(pos: Double) {
         appleMusic.setPlayerPosition?(pos)
     }

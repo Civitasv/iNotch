@@ -2,7 +2,7 @@
 //  Logger.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/15.
+//  Created by Civitasv on 2025/4/15.
 //
 
 import Foundation
@@ -32,7 +32,7 @@ struct Logger {
         let timestamp = ISO8601DateFormatter().string(from: Date())
         print("\(category.rawValue) [\(timestamp)] [\(fileName):\(line)] \(function) - \(message)")
     }
-    
+
     static func trackMemory(
         file: String = #file,
         function: String = #function,
@@ -40,7 +40,7 @@ struct Logger {
     ) {
         var info = mach_task_basic_info()
         var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size)/4
-        
+
         let kerr: kern_return_t = withUnsafeMutablePointer(to: &info) {
             $0.withMemoryRebound(to: integer_t.self, capacity: 1) {
                 task_info(mach_task_self_,
@@ -49,7 +49,7 @@ struct Logger {
                          &count)
             }
         }
-        
+
         if kerr == KERN_SUCCESS {
             let usedMB = Double(info.resident_size) / 1024.0 / 1024.0
             log(String(format: "Memory used: %.2f MB", usedMB),
@@ -69,7 +69,7 @@ extension View {
 
 struct ViewLifecycleTracker: ViewModifier {
     let identifier: String
-    
+
     func body(content: Content) -> some View {
         content
             .onAppear {

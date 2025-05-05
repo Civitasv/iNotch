@@ -2,7 +2,7 @@
 //  Event.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/4/19.
+//  Created by Civitasv on 2025/4/19.
 //
 
 import Foundation
@@ -46,7 +46,7 @@ extension View {
 struct NotificationReceiverModifier<NotificationType: RawRepresentable>: ViewModifier where NotificationType.RawValue == String {
     let notificationName: NotificationType
     let handler: ([AnyHashable: Any]?) -> Void
-    
+
     func body(content: Content) -> some View {
         content
             .onReceive(NotificationCenter.default.publisher(

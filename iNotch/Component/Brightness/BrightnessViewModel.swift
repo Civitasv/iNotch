@@ -2,7 +2,7 @@
 //  BrightnessViewModel.swift
 //  iNotch
 //
-//  Created by 胡森 on 2025/5/3.
+//  Created by Civitasv on 2025/5/3.
 //
 
 import Foundation
@@ -11,39 +11,39 @@ import Foundation
 final class BrightnessViewModel : TickableViewModel {
     var volume: Float = Sound.output.volume
     var isChanged: Bool = false
-    
+
     var imageName: String = ""
-    
+
     override init(tickInterval: TimeInterval = 0.1) {
         super.init(tickInterval: tickInterval)
         refreshImage(prevBrightness: volume, currentBrightness: volume)
     }
-    
+
     public override func tick(_ params: [AnyHashable : Any]?) {
         refreshBrightnessInfo()
     }
-    
+
     private func refreshBrightnessInfo() {
         let currentVolume = Sound.output.volume
         if self.volume != currentVolume {
 //            refreshImage(prevVolume: self.volume, currentVolume: currentVolume)
-            
+
             self.volume = currentVolume
             self.isChanged = true
-            
+
             postEvent(name: "SoundAdjustingViewModel.BrightnessChange", params: ["Volume": currentVolume])
         }
         else {
             self.isChanged = false
-            
+
             refreshImage(prevBrightness: self.volume, currentBrightness: currentVolume)
         }
     }
-    
+
     public func setBrightness(brightness: Double) {
 
     }
-    
+
     private func refreshImage(prevBrightness: Float, currentBrightness: Float) {
 //        if prevVolume == currentVolume {
 //            if currentVolume <= 0 {

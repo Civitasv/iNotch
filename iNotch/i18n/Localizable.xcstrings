@@ -94,9 +94,6 @@
         }
       }
     },
-    "muted" : {
-
-    },
     "NormalCpu" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -172,9 +169,6 @@
           }
         }
       }
-    },
-    "unmuted" : {
-
     }
   },
   "version" : "1.0"
