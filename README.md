@@ -1,6 +1,6 @@
 # iNotch
 
-![Function Video](./Assets/Function.mov)
+![Function Video](./Assets/Function.gif)
 
 Attention: It's still in development...
 
