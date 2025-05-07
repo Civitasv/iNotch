@@ -55,24 +55,28 @@ final class SystemViewModel: TickableViewModel {
             Logger.log("now: \(Date.now)", category: .debug)
             postEvent(name: "NotchViewModel.ShowTips", params: ["Tips": "HighCpuWarning"])
             showHighCpuUsageWarning = true
+            showNormalCpuUsageTips = false
         }
 
-        if showHighCpuUsageWarning && normalCpuUsage() {
+        if showHighCpuUsageWarning && !showNormalCpuUsageTips && normalCpuUsage() {
             Logger.log("now: \(Date.now)", category: .debug)
             postEvent(name: "NotchViewModel.ShowTips", params: ["Tips": "NormalCpu"])
             showNormalCpuUsageTips = true
+            showHighCpuUsageWarning = false
         }
 
         if !showHighMemoryUsageWarning && highMemoryUsage() {
             Logger.log("now: \(Date.now)", category: .debug)
             postEvent(name: "NotchViewModel.ShowTips", params: ["Tips": "HighMemoryWarning"])
             showHighMemoryUsageWarning = true
+            showNormalMemoryUsageTips = false
         }
 
-        if showHighMemoryUsageWarning && noamrlMemoryUsage() {
+        if showHighMemoryUsageWarning && !showNormalMemoryUsageTips && noamrlMemoryUsage() {
             Logger.log("now: \(Date.now)", category: .debug)
             postEvent(name: "NotchViewModel.ShowTips", params: ["Tips": "NormalMemory"])
-            showNormalCpuUsageTips = true
+            showNormalMemoryUsageTips = true
+            showHighMemoryUsageWarning = false
         }
     }
 
